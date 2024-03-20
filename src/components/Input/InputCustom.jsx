@@ -12,6 +12,7 @@ const InputCustom = ({
   error,
   touched,
   readOnly,
+  type = "text",
 }) => {
   // id, label, placeholder sẽ khác nhau giữa các input
   console.log(readOnly);
@@ -27,7 +28,7 @@ const InputCustom = ({
         onBlur={onBlur}
         value={value}
         onChange={onChange}
-        type="text"
+        type={type}
         name={name}
         readOnly={readOnly ? true : false}
         id={id}
