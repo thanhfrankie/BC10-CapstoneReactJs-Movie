@@ -15,6 +15,7 @@ const { Header, Sider, Content } = Layout;
 const AdminTemplate = () => {
   useEffect(() => {
     // thực hiện lấy dữ liệu từ local lên để kiểm tra
+    // Hello Thành
     const user = getLocalStorage("user");
     // console.log(user);
     if (!user) {
