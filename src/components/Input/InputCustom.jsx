@@ -15,7 +15,7 @@ const InputCustom = ({
   type = "text",
 }) => {
   // id, label, placeholder sẽ khác nhau giữa các input
-  console.log(readOnly);
+
   return (
     <div>
       <label

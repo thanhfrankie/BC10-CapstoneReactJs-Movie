@@ -7,10 +7,24 @@ import {
   VideoCameraOutlined,
 } from "@ant-design/icons";
 import { NavLink, Outlet } from "react-router-dom";
-
+import { Layout, Menu, Button, theme } from "antd";
+import { useEffect } from "react";
+import { getLocalStorage } from "../../utils/util";
 const { Header, Sider, Content } = Layout;
 
 const AdminTemplate = () => {
+  useEffect(() => {
+    // thực hiện lấy dữ liệu từ local lên để kiểm tra
+    const user = getLocalStorage("user");
+    // console.log(user);
+    if (!user) {
+      window.location.href = "https://google.com";
+    }
+    if (user?.maLoaiNguoiDung !== "QuanTri") {
+      window.location.href = "https://google.com";
+    }
+  }, []);
+
   const [collapsed, setCollapsed] = useState(false);
   const {
     token: { colorBgContainer, borderRadiusLG },

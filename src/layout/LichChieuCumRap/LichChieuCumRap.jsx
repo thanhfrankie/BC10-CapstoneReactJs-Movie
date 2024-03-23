@@ -8,7 +8,7 @@ const LichChieuCumRap = () => {
     quanLyRapServ
       .getAllThongTinCumRap()
       .then((res) => {
-        console.log(res);
+        // console.log(res);
         setArrCumRap(res.data.content);
       })
       .catch((err) => {
@@ -37,7 +37,7 @@ const LichChieuCumRap = () => {
             height: "700px",
           }}
           items={arrCumRap.map((cumrap, index) => {
-            console.log(cumrap);
+            // console.log(cumrap);
             return {
               label: <img className="w-14" src={cumrap.logo} />,
               key: cumrap.maHeThongRap,

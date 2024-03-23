@@ -2,7 +2,13 @@ import React, { useEffect, useState } from "react";
 import { Carousel } from "antd";
 import { quanLyPhimServ } from "../../services/quanLyPhim";
 import "./banner.scss";
+import { useDispatch } from "react-redux";
+import {
+  handleTurnOffLoading,
+  handleTurnOnLoading,
+} from "../../redux/slice/loadingSlice";
 const Banner = () => {
+  const dispatch = useDispatch();
   const [arrBanner, setArrBanner] = useState([]);
   const contentStyle = {
     margin: 0,
@@ -17,14 +23,17 @@ const Banner = () => {
   };
 
   useEffect(() => {
+    dispatch(handleTurnOnLoading());
     quanLyPhimServ
       .getAllBanner()
       .then((res) => {
-        console.log(res);
+        // console.log(res);
         setArrBanner(res.data.content);
+        dispatch(handleTurnOffLoading());
       })
       .catch((err) => {
         console.log(err);
+        dispatch(handleTurnOffLoading());
       });
   }, []);
 

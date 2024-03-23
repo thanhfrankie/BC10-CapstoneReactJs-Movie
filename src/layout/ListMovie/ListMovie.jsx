@@ -1,19 +1,26 @@
 import React, { useEffect, useState } from "react";
 import { quanLyPhimServ } from "../../services/quanLyPhim";
-
+import { useSelector, useDispatch } from "react-redux";
+import { getAllMovieThunk, handleAllMovie } from "../../redux/slice/phimSlice";
 const ListMovie = () => {
-  const [arrMovie, setArrMovie] = useState([]);
-
+  // const [arrMovie, setArrMovie] = useState([]);
+  // có thể coi tham số state đại diện cho object reducer có ở store
+  const { arrMovie } = useSelector((state) => state.phimSlice);
+  const dispatch = useDispatch();
+  // console.log(arrMovie);
+  // console.log(phimSlice);
   useEffect(() => {
-    quanLyPhimServ
-      .getAllMovie()
-      .then((res) => {
-        console.log(res);
-        setArrMovie(res.data.content);
-      })
-      .catch((err) => {
-        console.log(err);
-      });
+    // quanLyPhimServ
+    //   .getAllMovie()
+    //   .then((res) => {
+    //     console.log(res);
+    //     // setArrMovie(res.data.content);
+    //     dispatch(handleAllMovie(res.data.content));
+    //   })
+    //   .catch((err) => {
+    //     console.log(err);
+    //   });
+    dispatch(getAllMovieThunk("abc"));
   }, []);
 
   return (
