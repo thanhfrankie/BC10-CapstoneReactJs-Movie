@@ -14,7 +14,12 @@ export const getAllMovieThunk = createAsyncThunk(
     const res = await quanLyPhimServ.getAllMovie();
     dispatch(handleTurnOffLoading());
     // res.data.content
-    return res.data.content;
+    const movies = res.data.content;
+    const chunks = [];
+    for (let i = 0; i < movies.length; i += 8) {
+      chunks.push(movies.slice(i, i + 8));
+    }
+    return chunks;
   }
 );
 

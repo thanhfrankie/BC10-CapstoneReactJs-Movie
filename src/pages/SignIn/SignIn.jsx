@@ -87,7 +87,7 @@ const SignIn = () => {
             <div>
               <p>
                 Chưa có tài khoản ư? bấm
-                <NavLink to="sign-up" className="mx-1 text-blue-500">
+                <NavLink to="/sign-up" className="mx-1 text-blue-500">
                   vào đây
                 </NavLink>
                 để đăng ký nè
