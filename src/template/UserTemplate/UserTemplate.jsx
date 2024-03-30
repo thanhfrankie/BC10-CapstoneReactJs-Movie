@@ -29,7 +29,7 @@ const UserTemplate = () => {
     >
       {isLoading ? <Loading /> : null}
       <Outlet />
-      <ToastContainer autoClose={closeTime} theme="dark" />
+      <ToastContainer position="top-center" autoClose={closeTime} theme="dark" />
     </NotifyContext.Provider>
   ) : (
     <div>Tôi đang ở tablet</div>

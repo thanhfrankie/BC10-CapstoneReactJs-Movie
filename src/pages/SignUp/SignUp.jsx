@@ -1,4 +1,4 @@
-import React, { useContext } from "react";
+import React, { useContext, useState } from "react";
 import InputCustom from "../../components/Input/InputCustom";
 import * as registerAnimation from "./../../assets/animation/register.json";
 import Lottie from "react-lottie";
@@ -9,7 +9,9 @@ import { quanLyNguoiDungServ } from "../../services/quanLyNguoiDung";
 import { NotifyContext } from "../../template/UserTemplate/UserTemplate";
 import { useNavigate } from "react-router-dom";
 import { saveLocalStorage, validationMessage } from "../../utils/util";
+import SignIn from "../SignIn/SignIn";
 const SignUp = () => {
+  const [showPassword, setShowPassword] = useState(false);
   const notify = useContext(NotifyContext);
   const navigate = useNavigate();
   const { handleChange, handleBlur, values, errors, touched, handleSubmit } =
@@ -74,82 +76,103 @@ const SignUp = () => {
     },
   };
   return (
-    <div className="form_signIn w-5/12 flex items-center justify-center flex-col">
-      <div className="p-10 border border-gray-400 rounded-md space-y-5">
-        <h1>Đăng ký thành viên</h1>
-        <form onSubmit={handleSubmit} className="space-y-5 spa">
-          <InputCustom
-            placeholder="Họ tên *"
-            id="hoTen"
-            onChange={handleChange}
-            onBlur={handleBlur}
-            error={errors.hoTen}
-            touched={touched.hoTen}
-            name="hoTen"
-            value={values.hoTen}
-          />
-          <InputCustom
-            placeholder="Tài khoản *"
-            id="taiKhoan"
-            onChange={handleChange}
-            onBlur={handleBlur}
-            error={errors.taiKhoan}
-            touched={touched.taiKhoan}
-            name="taiKhoan"
-            value={values.taiKhoan}
-          />
-          <div className="border-red-50">
-            <InputCustom
-              placeholder="Mật khẩu *"
-              id="matKhau"
-              onChange={handleChange}
-              type="password"
-              onBlur={handleBlur}
-              error={errors.matKhau}
-              touched={touched.matKhau}
-              name="matKhau"
-              value={values.matKhau}
-              className="relative"
-            />
-            <button type="button" className="absolute">
-              <i class="fa-solid fa-eye"></i>
-            </button>
-            <button type="button" className="absolute">
-              <i class="fa-solid fa-eye-slash"></i>
-            </button>
-          </div>
+    <div className="w-screen h-screen bg-gray-300">
+      <div className="container flex justify-center items-center">
+        <div className="container absolute left-1/2 top-1/2 transform -translate-x-1/2 -translate-y-1/2 z-0 opacity-50 pointer-events-none">
+          <SignIn />
+        </div>
+        <div className="form_signUp w-1/3 h-2/3 flex items-center justify-center flex-col absolute left-1/2 top-1/2 transform -translate-x-1/2 -translate-y-1/2 p-10 border border-gray-400 rounded-md space-y-5 z-10 bg-gray-900 bg-opacity-80 ">
+          <div className="w-5/6 p-10 border border-gray-400 rounded-md space-y-5">
+            <h1 className="flex items-center justify-center text-white text-lg">
+              Đăng ký thành viên
+            </h1>
+            <form onSubmit={handleSubmit} className="space-y-5">
+              <InputCustom
+                placeholder="Họ tên *"
+                id="hoTen"
+                onChange={handleChange}
+                onBlur={handleBlur}
+                error={errors.hoTen}
+                touched={touched.hoTen}
+                name="hoTen"
+                value={values.hoTen}
+              />
+              <InputCustom
+                placeholder="Tài khoản *"
+                id="taiKhoan"
+                onChange={handleChange}
+                onBlur={handleBlur}
+                error={errors.taiKhoan}
+                touched={touched.taiKhoan}
+                name="taiKhoan"
+                value={values.taiKhoan}
+              />
+              <div className="relative">
+                <InputCustom
+                  placeholder="Mật khẩu *"
+                  id="matKhau"
+                  onChange={handleChange}
+                  type={showPassword ? "text" : "password"}
+                  onBlur={handleBlur}
+                  error={errors.matKhau}
+                  touched={touched.matKhau}
+                  name="matKhau"
+                  value={values.matKhau}
+                  // className="pl-10 pr-16"
+                />
+                <div
+                  className={`absolute top-1/2 right-2 transform flex items-center ${
+                    errors.matKhau && touched.matKhau
+                      ? "-translate-y-5"
+                      : "-translate-y-1/2"
+                  }`}
+                >
+                  <button
+                    type="button"
+                    onClick={() => setShowPassword(!showPassword)}
+                    className="mr-2"
+                  >
+                    {showPassword ? (
+                      <i className="fas fa-eye text-gray-500"></i>
+                    ) : (
+                      <i className="fas fa-eye-slash text-gray-500"></i>
+                    )}
+                  </button>
+                </div>
+              </div>
+              <InputCustom
+                placeholder="Email *"
+                id="email"
+                onChange={handleChange}
+                onBlur={handleBlur}
+                type="email"
+                error={errors.email}
+                touched={touched.email}
+                name="email"
+                value={values.email}
+              />
 
-          <InputCustom
-            placeholder="Email *"
-            id="email"
-            onChange={handleChange}
-            onBlur={handleBlur}
-            type="email"
-            error={errors.email}
-            touched={touched.email}
-            name="email"
-            value={values.email}
-          />
-
-          <InputCustom
-            placeholder="Số điện thoại *"
-            id="soDt"
-            onChange={handleChange}
-            onBlur={handleBlur}
-            error={errors.soDt}
-            touched={touched.soDt}
-            name="soDt"
-            value={values.soDt}
-          />
-          <div>
-            <button
-              type="submit"
-              className="py-2 px-5 bg-black text-white rounded-md w-full mt-2"
-            >
-              Đăng ký
-            </button>
+              <InputCustom
+                placeholder="Số điện thoại *"
+                id="soDt"
+                onChange={handleChange}
+                onBlur={handleBlur}
+                error={errors.soDt}
+                touched={touched.soDt}
+                name="soDt"
+                value={values.soDt}
+              />
+              <div>
+                <button
+                  type="submit"
+                  className="py-2 px-5 bg-black text-white rounded-md w-full mt-2"
+                >
+                  Đăng ký
+                </button>
+              </div>
+            </form>
           </div>
-        </form>
+        </div>
       </div>
     </div>
   );
