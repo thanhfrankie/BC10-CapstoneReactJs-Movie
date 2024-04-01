@@ -1,6 +1,6 @@
 import React, { useEffect, useState } from "react";
 
-const useReponsive = () => {
+const useResponsive = () => {
   const [width, setWidth] = useState(window.innerWidth);
 
   const handleWindowSizeChange = () => {
@@ -22,4 +22,4 @@ const useReponsive = () => {
   return { isMobile, isTablet, isDesktop };
 };
 
-export default useReponsive;
+export default useResponsive;
