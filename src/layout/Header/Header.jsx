@@ -13,7 +13,7 @@ const Header = () => {
     setIsLoggedIn(checkLocalStorage());
   }, []);
   const handleLogout = () => {
-    // localStorage.removeItem("user");
+    localStorage.removeItem("user");
     setIsLoggedIn(false);
   };
   return (
