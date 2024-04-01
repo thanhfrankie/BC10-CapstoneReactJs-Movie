@@ -7,7 +7,7 @@ const Header = () => {
   const userLocal = getLocalStorage("user");
   useEffect(() => {
     const checkLocalStorage = () => {
-      return userLocal;
+      return userLocal !== null;
     };
     // Kiểm tra và cập nhật trạng thái đăng nhập khi component được mount
     setIsLoggedIn(checkLocalStorage());
