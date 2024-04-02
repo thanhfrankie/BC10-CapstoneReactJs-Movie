@@ -1,0 +1,22 @@
+hr {
+  margin-left: 10px; /* Giảm khoảng cách ở bên trái */
+  margin-right: 10px; /* Giảm khoảng cách ở bên phải */
+}
+.movie_info {
+  width: 100%;
+  box-shadow: 0 0 5px grey;
+  background-color: #fff;
+  .btn_datve {
+    color: #fff;
+    width: 100%;
+    height: 70px;
+    font-size: 25px;
+
+    margin-top: 182px;
+    background-color: #fb4226;
+    transition: 0.9;
+  }
+  .btn_datve:hover {
+    background-color: #631307;
+  }
+}

@@ -23,6 +23,20 @@ const loadingSlice = createSlice({
     },
   },
 });
+// const loadingSlice = createSlice({
+//   name: "loadingSlice",
+//   initialState,
+//   reducers: {
+//     startLoading: (state) => {
+//       state.isLoading = !state.isLoading;
+//     },
+//     stopLoading: (state) => {
+//       state.isLoading = !state.isLoading;
+//     },
+//   },
+// });
+
+// export const { startLoading, stopLoading } = loadingSlice.actions;
 
 export const { handleTurnOffLoading, handleTurnOnLoading } =
   loadingSlice.actions;

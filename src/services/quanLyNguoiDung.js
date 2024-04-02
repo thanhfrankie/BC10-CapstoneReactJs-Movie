@@ -8,4 +8,10 @@ export const quanLyNguoiDungServ = {
   dangKy: (data) => {
     return http.post("/QuanLyNguoiDung/DangKy", data);
   },
+  layThongTinNguoiDung: () => {
+    return http.post(`/QuanLyNguoiDung/ThongTinTaiKhoan`);
+  },
+  datVe: (maLichChieu, danhSachVe) => {
+    return http.post(`/QuanLyDatVe/DatVe`, { maLichChieu, danhSachVe });
+  },
 };
