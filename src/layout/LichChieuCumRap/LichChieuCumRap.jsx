@@ -2,52 +2,56 @@ import React, { useEffect, useState } from "react";
 import { Tabs } from "antd";
 import { quanLyRapServ } from "../../services/quanLyRap";
 import LichChieuPhim from "../../components/LichChieuPhim/LichChieuPhim";
-const LichChieuCumRap = () => {
+import "./LichChieuCumRap.scss";
+export default function LichChieuCumRap() {
   const [arrCumRap, setArrCumRap] = useState([]);
   useEffect(() => {
     quanLyRapServ
       .getAllThongTinCumRap()
       .then((res) => {
-        // console.log(res);
+        console.log(res);
         setArrCumRap(res.data.content);
       })
       .catch((err) => {
         console.log(err);
       });
   }, []);
-
   return (
-    <div className="mt-10">
-      <h2 className="font-bold text-2xl text-center">
-        Danh sách lịch chiếu cụm rạp
+    <div>
+      <h2 className="text-center font-bold text-3xl my-5">
+        Danh Sách Lịch Chiếu Cụm Rạp
       </h2>
-      {/* tab lịch chiếu cụm rạp  */}
-      <div>
-        <Tabs
-          tabPosition="left"
-          // items={new Array(3).fill(null).map((_, i) => {
-          //   const id = String(i + 1);
-          //   return {
-          //     label: `Tab ${id}`,
-          //     key: id,
-          //     children: `Content of Tab ${id}`,
-          //   };
-          // })}
-          style={{
-            height: "700px",
-          }}
-          items={arrCumRap.map((cumrap, index) => {
-            // console.log(cumrap);
-            return {
-              label: <img className="w-14" src={cumrap.logo} />,
-              key: cumrap.maHeThongRap,
-              children: <LichChieuPhim cumrap={cumrap.lstCumRap} />,
-            };
-          })}
-        />
+      <div className="danh-sach   ">
+        {/* tab lịch chiếu cụm rạp  */}
+        <div className="cum-rap ">
+          <Tabs
+            tabPosition="left"
+            //   items={new Array(3).fill(null).map((_, i) => {
+            //     const id = String(i + 1);
+            //     return {
+            //       label: `Tab ${id}`,
+            //       key: id,
+            //       children: `Content of Tab ${id}`,
+            //     };
+
+            //   })}
+            style={{
+              height: 700,
+            }}
+            items={arrCumRap?.map((cumrap, index) => {
+              return {
+                label: (
+                  <div className="img-content ">
+                    <img className="w-16 " src={cumrap.logo} />,
+                  </div>
+                ),
+                key: cumrap.maHeThongRap,
+                children: <LichChieuPhim cumrap={cumrap.lstCumRap} />,
+              };
+            })}
+          />
+        </div>
       </div>
     </div>
   );
-};
-
-export default LichChieuCumRap;
+}
