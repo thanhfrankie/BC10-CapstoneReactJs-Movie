@@ -1,11 +1,24 @@
-import React, { useEffect, useState } from "react";
+import React, { useContext, useEffect, useState } from "react";
 import { quanLyRapServ } from "../../services/quanLyRap";
 import { Tabs } from "antd";
 import moment from "moment";
 import "./lichChieuPhim.scss";
-import { NavLink } from "react-router-dom";
+import { NavLink, useNavigate } from "react-router-dom";
+import { NotifyContext } from "../../template/UserTemplate/UserTemplate";
+import { getLocalStorage } from "../../utils/util";
 export default function LichChieuPhim({ cumrap }) {
+  const notify = useContext(NotifyContext);
+  const navigate = useNavigate();
   const [arrLichChieu, setArrLichChieu] = useState([]);
+  const [isLoggedIn, setIsLoggedIn] = useState(false);
+  const userLocal = getLocalStorage("user");
+  useEffect(() => {
+    const checkLocalStorage = () => {
+      return userLocal !== null;
+    };
+    // Kiểm tra và cập nhật trạng thái đăng nhập khi component được mount
+    setIsLoggedIn(checkLocalStorage());
+  }, []);
   useEffect(() => {
     quanLyRapServ
       .getAllThongTinCumRap()
@@ -17,6 +30,12 @@ export default function LichChieuPhim({ cumrap }) {
         console.log(err);
       });
   }, []);
+  const handleCheckLoggedIn = () => {
+    notify("Vui lòng đăng nhập");
+    setTimeout(() => {
+      navigate("/sign-in");
+    }, 1000);
+  };
   return (
     <div className="lich_chieu w-full mx-2  ">
       <Tabs
@@ -69,24 +88,30 @@ export default function LichChieuPhim({ cumrap }) {
                                 .map((gioChieu, index) => {
                                   return (
                                     <div className="space-x-5 gio-chieu  ">
-                                      <NavLink
-                                        to={`/ticket-room/${gioChieu.maLichChieu}`}
-                                        className="space-x-3 hover-content text-center text-sm "
-                                      >
-                                        {/* ngày tháng */}
-                                        <span className=" moment-item text-green-600  font-semibold   ">
-                                          {moment(
-                                            gioChieu.ngayChieuGioChieu
-                                          ).format("DD-MM-YYYY")}
-                                        </span>
-                                        <span>~</span>
-                                        {/* giờ chiếu */}
-                                        <span className=" moment-item text-orange-500 text-lg font-semibold ">
-                                          {moment(
-                                            gioChieu.ngayChieuGioChieu
-                                          ).format("hh:mm")}
-                                        </span>
-                                      </NavLink>
+                                      <button onClick={handleCheckLoggedIn}>
+                                        <NavLink
+                                          to={
+                                            isLoggedIn
+                                              ? `/ticket-room/${gioChieu.maLichChieu}`
+                                              : `/sign-in`
+                                          }
+                                          className="space-x-3 hover-content text-center text-sm "
+                                        >
+                                          {/* ngày tháng */}
+                                          <span className=" moment-item text-green-600  font-semibold   ">
+                                            {moment(
+                                              gioChieu.ngayChieuGioChieu
+                                            ).format("DD-MM-YYYY")}
+                                          </span>
+                                          <span>~</span>
+                                          {/* giờ chiếu */}
+                                          <span className=" moment-item text-orange-500 text-lg font-semibold ">
+                                            {moment(
+                                              gioChieu.ngayChieuGioChieu
+                                            ).format("hh:mm")}
+                                          </span>
+                                        </NavLink>
+                                      </button>
                                     </div>
                                   );
                                 })}
