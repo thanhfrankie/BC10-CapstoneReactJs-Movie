@@ -31,10 +31,12 @@ export default function LichChieuPhim({ cumrap }) {
       });
   }, []);
   const handleCheckLoggedIn = () => {
-    notify("Vui lòng đăng nhập");
-    setTimeout(() => {
-      navigate("/sign-in");
-    }, 1000);
+    if (!isLoggedIn) {
+      notify("Vui lòng đăng nhập");
+      setTimeout(() => {
+        navigate("/sign-in");
+      }, 1000);
+    }
   };
   return (
     <div className="lich_chieu w-full mx-2  ">
