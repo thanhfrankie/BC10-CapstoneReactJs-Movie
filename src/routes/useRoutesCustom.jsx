@@ -29,7 +29,6 @@ const useRoutesCustom = () => {
         },
         {
           path: "ticket-room/:maLichChieu",
-
           element: <Purchase />,
         },
         {

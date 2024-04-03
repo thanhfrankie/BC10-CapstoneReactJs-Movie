@@ -2,7 +2,7 @@ import React, { useEffect, useState } from "react";
 import { quanLyRapServ } from "../../services/quanLyRap";
 import { Tabs } from "antd";
 import moment from "moment";
-import "./LichChieuPhim.scss";
+import "./lichChieuPhim.scss";
 import { NavLink } from "react-router-dom";
 export default function LichChieuPhim({ cumrap }) {
   const [arrLichChieu, setArrLichChieu] = useState([]);
