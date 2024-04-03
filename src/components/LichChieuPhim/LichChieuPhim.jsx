@@ -33,9 +33,6 @@ export default function LichChieuPhim({ cumrap }) {
   const handleCheckLoggedIn = () => {
     if (!isLoggedIn) {
       notify("Vui lòng đăng nhập");
-      setTimeout(() => {
-        navigate("/sign-in");
-      }, 1000);
     }
   };
   return (
@@ -89,31 +86,30 @@ export default function LichChieuPhim({ cumrap }) {
                                 .slice(0, 4)
                                 .map((gioChieu, index) => {
                                   return (
-                                    <div className="space-x-5 gio-chieu  ">
-                                      <button onClick={handleCheckLoggedIn}>
-                                        <NavLink
-                                          to={
-                                            isLoggedIn
-                                              ? `/ticket-room/${gioChieu.maLichChieu}`
-                                              : `/sign-in`
-                                          }
-                                          className="space-x-3 hover-content text-center text-sm "
-                                        >
-                                          {/* ngày tháng */}
-                                          <span className=" moment-item text-green-600  font-semibold   ">
-                                            {moment(
-                                              gioChieu.ngayChieuGioChieu
-                                            ).format("DD-MM-YYYY")}
-                                          </span>
-                                          <span>~</span>
-                                          {/* giờ chiếu */}
-                                          <span className=" moment-item text-orange-500 text-lg font-semibold ">
-                                            {moment(
-                                              gioChieu.ngayChieuGioChieu
-                                            ).format("hh:mm")}
-                                          </span>
-                                        </NavLink>
-                                      </button>
+                                    <div className="space-x-5 gio-chieu">
+                                      <NavLink
+                                        to={
+                                          isLoggedIn
+                                            ? `/ticket-room/${gioChieu.maLichChieu}`
+                                            : `/sign-in`
+                                        }
+                                        className="space-x-3 hover-content text-center text-sm "
+                                        onClick={handleCheckLoggedIn}
+                                      >
+                                        {/* ngày tháng */}
+                                        <span className=" moment-item text-green-600  font-semibold   ">
+                                          {moment(
+                                            gioChieu.ngayChieuGioChieu
+                                          ).format("DD-MM-YYYY")}
+                                        </span>
+                                        <span>~</span>
+                                        {/* giờ chiếu */}
+                                        <span className=" moment-item text-orange-500 text-lg font-semibold ">
+                                          {moment(
+                                            gioChieu.ngayChieuGioChieu
+                                          ).format("hh:mm")}
+                                        </span>
+                                      </NavLink>
                                     </div>
                                   );
                                 })}
