@@ -1,7 +1,7 @@
 import React, { useEffect, useState } from "react";
 import "../components/info.scss";
 import { quanLyMuaVeServ } from "../../../services/quanLyMuaVe";
-import { useNavigate, useParams } from "react-router-dom";
+import { NavLink, useNavigate, useParams } from "react-router-dom";
 import { getLocalStorage } from "../../../utils/util";
 import { quanLyNguoiDungServ } from "../../../services/quanLyNguoiDung";
 import LichSuDatVe from "../../../components/LichSuDatVe/LichSuDatVe";
@@ -47,7 +47,7 @@ export default function InfoMovie({ gheArr }) {
         navigate(`/account`);
       })
       .catch((error) => {
-        console.log("EROR");
+        console.log("ERROR");
       });
   };
 
@@ -107,7 +107,13 @@ export default function InfoMovie({ gheArr }) {
               Đặt Vé
             </button>
           ) : (
-            <>chua login</>
+            <p>
+              Vui lòng
+              <NavLink to="/sign-in" className="mx-1 text-blue-500">
+                đăng nhập
+              </NavLink>
+              để tiếp tục
+            </p>
           )}
         </div>
       </div>

@@ -30,9 +30,17 @@ export default function LichChieuPhim({ cumrap }) {
         console.log(err);
       });
   }, []);
+  // const handleCheckLoggedIn = () => {
+  //   if (!isLoggedIn) {
+  //     notify("Vui lòng đăng nhập");
+  //   }
+  // };
   const handleCheckLoggedIn = () => {
     if (!isLoggedIn) {
-      notify("Vui lòng đăng nhập");
+      notify("Vui lòng đăng nhập để tiếp tục");
+      setTimeout(() => {
+        navigate("/sign-in");
+      }, 1000);
     }
   };
   return (
