@@ -2,7 +2,7 @@ import React, { useContext, useEffect, useState } from "react";
 import { quanLyRapServ } from "../../services/quanLyRap";
 import { Tabs } from "antd";
 import moment from "moment";
-import "./LichChieuPhim.scss";
+import "./lichChieuPhim.scss";
 import { NavLink, useNavigate } from "react-router-dom";
 import { NotifyContext } from "../../template/UserTemplate/UserTemplate";
 import { getLocalStorage } from "../../utils/util";
