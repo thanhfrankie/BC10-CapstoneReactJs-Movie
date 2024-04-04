@@ -6,7 +6,7 @@ export const quanLyPhimServ = {
     return http.get("/QuanLyPhim/LayDanhSachBanner");
   },
   getAllMovie: (tenPhim = "") => {
-    if (tenPhim.trim() != "") {
+    if (tenPhim.trim() !== "") {
       return http.get(
         `/QuanLyPhim/LayDanhSachPhim?maNhom=GP01&tenPhim=${tenPhim}`
       );

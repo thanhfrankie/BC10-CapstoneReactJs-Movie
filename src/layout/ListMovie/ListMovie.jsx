@@ -4,7 +4,7 @@ import { useSelector, useDispatch } from "react-redux";
 import { getAllMovieThunk, handleAllMovie } from "../../redux/slice/phimSlice";
 import { Carousel } from "antd";
 import { NavLink } from "react-router-dom";
-import "./listMovie.scss";
+import "./ListMovie.scss";
 const ListMovie = () => {
   // const [arrMovie, setArrMovie] = useState([]);
   // có thể coi tham số state đại diện cho object reducer có ở store
