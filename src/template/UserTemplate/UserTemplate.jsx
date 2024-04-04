@@ -8,7 +8,7 @@ import useResponsive from "../../hooks/useResponsive";
 export const NotifyContext = React.createContext(null);
 const UserTemplate = () => {
   const { isMobile, isTablet, isDesktop } = useResponsive();
-  
+
   console.log(isMobile);
   console.log(isTablet);
   console.log(isDesktop);
