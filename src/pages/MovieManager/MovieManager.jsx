@@ -1,12 +1,12 @@
 import React, { Fragment, useContext, useEffect, useState } from "react";
-import { Button, Table } from "antd";
+import { Table } from "antd";
 import { Input } from "antd";
 import { useDispatch, useSelector } from "react-redux";
 import { getAllMovieThunk } from "../../redux/slice/phimSlice";
 import { NavLink } from "react-router-dom";
 import { quanLyPhimServ } from "../../services/quanLyPhim";
 import { NotifyContext } from "../../template/AdminTemplate/AdminTemplate";
-import { CalendarOutlined } from "@ant-design/icons";
+import { CalendarOutlined, VideoCameraAddOutlined } from "@ant-design/icons";
 
 const MovieManager = () => {
   const notify = useContext(NotifyContext);
@@ -174,19 +174,17 @@ const MovieManager = () => {
     },
   ];
   const data = arrMovie;
-  console.log(data);
-  const onChange = (pagination, filters, sorter, extra) => {
-    console.log("params", pagination, filters, sorter, extra);
-  };
+  const onChange = (pagination, filters, sorter, extra) => {};
   return (
     <div>
       <h3 className="text-4xl mb-5">Quản lý phim</h3>
-      <NavLink className="mb-5" to="/admin/them-phim">
-        <Button className="mb-5">Thêm phim</Button>
+      <NavLink className="mb-5 text-2xl text-green-600" to="/admin/them-phim">
+        Add movie
+        <VideoCameraAddOutlined className="ml-3" />
       </NavLink>
       <br />
       <Search
-        className="mb-5 custom-search-input w-1/2"
+        className="mb-5 mt-5 custom-search-input w-1/2"
         placeholder="Tìm kiếm phim"
         allowClear
         size="large"

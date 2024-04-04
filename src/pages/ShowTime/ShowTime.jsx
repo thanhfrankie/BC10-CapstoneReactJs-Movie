@@ -50,7 +50,13 @@ const ShowTime = () => {
       try {
         let result = await quanLyRapServ.getInfoHeThongRap();
         setStage({ ...state, heThongRapChieu: result.data.content });
-      } catch (error) {}
+        formik.setFieldValue(
+          "heThongRap",
+          result.data.content[0]?.maCumRap || ""
+        );
+      } catch (error) {
+        "error", error;
+      }
     };
     fetchData();
   }, []);
