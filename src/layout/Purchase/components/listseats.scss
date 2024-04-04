@@ -67,50 +67,31 @@
   flex-direction: column;
 }
 /* Thiết lập cho màn hình từ 768px trở lên */
-/* Thiết lập cho màn hình từ 768px đến 991px (màn hình tablet) */
-@media (min-width: 768px) and (max-width: 991px) {
+@media (min-width: 768px) {
   .seats-container {
-    /* Các style khác ở đây */
     justify-content: center;
-  }
-
-  .seat-wrapper {
-    flex: 0 0 calc(100% / 10); /* Điều chỉnh số lượng ghế trong mỗi hàng */
-  }
-
-  .button_item {
-    width: 80%; /* Điều chỉnh kích thước của phần nút */
+    width: 100%;
   }
 }
 
-/* Thiết lập cho màn hình từ 992px trở lên (màn hình desktop) */
+/* Thiết lập cho màn hình từ 992px trở lên */
 @media (min-width: 992px) {
   .seats-container {
     /* Các style khác ở đây */
     justify-content: center;
+    width: 100%;
   }
-
   .seat-wrapper {
-    flex: 0 0 calc(100% / 16); /* Điều chỉnh số lượng ghế trong mỗi hàng */
-  }
-
-  .button_item {
-    width: 50%; /* Điều chỉnh kích thước của phần nút */
+    flex: 0 0 calc(100% / 16);
+    /* Điều chỉnh số lượng ghế trong mỗi hàng */
   }
 }
 
-/* Thiết lập cho màn hình từ 1200px trở lên (màn hình desktop lớn hơn) */
+/* Thiết lập cho màn hình từ 1200px trở lên */
 @media (min-width: 1200px) {
   .seats-container {
     /* Các style khác ở đây */
     justify-content: center;
-  }
-
-  .seat-wrapper {
-    flex: 0 0 calc(100% / 20); /* Điều chỉnh số lượng ghế trong mỗi hàng */
-  }
-
-  .button_item {
-    width: 40%; /* Điều chỉnh kích thước của phần nút */
+    width: 100%;
   }
 }
