@@ -3,21 +3,28 @@ import { quanLyNguoiDungServ } from "../../services/quanLyNguoiDung";
 import moment from "moment";
 
 import { getLocalStorage } from "../../utils/util";
-
+import {
+  handleTurnOffLoading,
+  handleTurnOnLoading,
+} from "../../redux/slice/loadingSlice";
 import "../LichSuDatVe/lichSuDatVe.scss";
+import { useDispatch } from "react-redux";
 const LichSuDatVe = ({ infoUser }) => {
   const userLocal = getLocalStorage("user");
+  const dispatch = useDispatch();
   // console.log("🚀 ~ LichSuDatVe :", infoUser);
   const [thongTinNguoiDung, setThongTinNguoiDung] = useState([]);
   const [datVe, setDatVe] = useState([]);
   console.log("🚀 ~ LichSuDatVe ~ datVe:", datVe);
   useEffect(() => {
+    dispatch(handleTurnOnLoading());
     const fetchData = async () => {
       try {
         const res = await quanLyNguoiDungServ.layThongTinNguoiDung();
 
         console.log(res.data.content);
         setThongTinNguoiDung(res.data.content);
+        dispatch(handleTurnOffLoading());
         setDatVe(res.data.content.thongTinDatVe);
       } catch (err) {
         console.log(err);
