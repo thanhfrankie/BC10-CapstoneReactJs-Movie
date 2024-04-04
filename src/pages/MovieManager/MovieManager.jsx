@@ -1,5 +1,5 @@
 import React, { Fragment, useContext, useEffect, useState } from "react";
-import { Button, Space, Table } from "antd";
+import { Button, Table } from "antd";
 import { Input } from "antd";
 import { useDispatch, useSelector } from "react-redux";
 import { getAllMovieThunk } from "../../redux/slice/phimSlice";
@@ -14,6 +14,10 @@ const MovieManager = () => {
   const dispatch = useDispatch();
   const { arrMovie: initialArrMovie } = useSelector((state) => state.phimSlice);
   const [arrMovie, setArrMovie] = useState(initialArrMovie);
+  // console.log(arrMovie);
+  useEffect(() => {
+    dispatch(getAllMovieThunk("abc"));
+  }, []);
 
   useEffect(() => {
     setArrMovie(initialArrMovie);
@@ -33,10 +37,6 @@ const MovieManager = () => {
         });
     }
   };
-
-  useEffect(() => {
-    dispatch(getAllMovieThunk("abc"));
-  }, []);
 
   const { Search } = Input;
 
@@ -174,6 +174,7 @@ const MovieManager = () => {
     },
   ];
   const data = arrMovie;
+  console.log(data);
   const onChange = (pagination, filters, sorter, extra) => {
     console.log("params", pagination, filters, sorter, extra);
   };
