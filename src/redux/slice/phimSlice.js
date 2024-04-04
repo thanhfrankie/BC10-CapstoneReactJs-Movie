@@ -13,13 +13,14 @@ export const getAllMovieThunk = createAsyncThunk(
     dispatch(handleTurnOnLoading());
     const res = await quanLyPhimServ.getAllMovie(tenPhim);
     dispatch(handleTurnOffLoading());
-    // res.data.content
+    res.data.content
     const movies = res.data.content;
     const chunks = [];
     for (let i = 0; i < movies.length; i += 8) {
       chunks.push(movies.slice(i, i + 8));
     }
     return chunks;
+    return res.data.content
   }
 );
 
