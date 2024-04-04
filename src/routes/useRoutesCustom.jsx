@@ -42,17 +42,37 @@ const useRoutesCustom = () => {
       element: <AdminTemplate />,
       children: [
         {
-          path: "quan-li-phim",
+          path: "/admin/quan-li-phim",
           element: <MovieManager />,
         },
         {
           // path: "them-phim",
-          element: <AddMovie />,
+          element: <MovieManager />,
           index: true,
         },
         {
           path: "them-phim",
           element: <AddMovie />,
+        },
+        {
+          path: "/admin/quan-li-phim/edit/:id",
+          element: <Edit />,
+        },
+        {
+          path: "/admin/quan-li-phim/showtime/:id/:tenphim",
+          element: <ShowTime />,
+        },
+        {
+          path: "/admin/quan-li-nguoi-dung",
+          element: <UserManagerment />,
+        },
+        {
+          path: "/admin/quan-li-nguoi-dung/them-nguoi-dung",
+          element: <AddUser />,
+        },
+        {
+          path: `/admin/quan-li-nguoi-dung/edit-nguoi-dung/:taiKhoan`,
+          element: <EditUser />,
         },
       ],
     },

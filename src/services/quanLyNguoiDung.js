@@ -1,4 +1,5 @@
 import { http } from "./config";
+import { getLocalStorage } from "../utils/util";
 
 export const quanLyNguoiDungServ = {
   dangNhap: (data) => {
@@ -13,5 +14,44 @@ export const quanLyNguoiDungServ = {
   },
   datVe: (maLichChieu, danhSachVe) => {
     return http.post(`/QuanLyDatVe/DatVe`, { maLichChieu, danhSachVe });
+  },
+  getListUser: () => {
+    return http.get("/QuanLyNguoiDung/LayDanhSachNguoiDung?MaNhom=GP01");
+  },
+  findUser: (data) => {
+    return http.get("QuanLyNguoiDung/TimKiemNguoiDung?MaNhom=GP01", data);
+  },
+  deleteUser: (taiKhoan) => {
+    const userLocal = getLocalStorage("user");
+    return http.delete(`/QuanLyNguoiDung/XoaNguoiDung?TaiKhoan=${taiKhoan}`, {
+      headers: {
+        Authorization: `bearer ${userLocal.accessToken}`,
+      },
+    });
+  },
+  addUser: (userData) => {
+    const userLocal = getLocalStorage("user");
+    return http.post("/QuanLyNguoiDung/ThemNguoiDung", userData, {
+      headers: {
+        Authorization: `bearer ${userLocal.accessToken}`,
+      },
+    });
+  },
+  getInfoUser: (taiKhoan) => {
+    return http.get(
+      `https://movienew.cybersoft.edu.vn/api/QuanLyNguoiDung/TimKiemNguoiDung?MaNhom=GP01&tuKhoa=${taiKhoan}`
+    );
+  },
+  updateUser: (userData) => {
+    const userLocal = getLocalStorage("user");
+    return http.post(
+      "https://movienew.cybersoft.edu.vn/api/QuanLyNguoiDung/CapNhatThongTinNguoiDung",
+      userData,
+      {
+        headers: {
+          Authorization: `bearer ${userLocal.accessToken}`,
+        },
+      }
+    );
   },
 };

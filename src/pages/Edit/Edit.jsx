@@ -1,17 +1,55 @@
-import React, { useContext, useState } from "react";
+import React, { useContext, useEffect, useState } from "react";
 import InputCustom from "../../components/Input/InputCustom";
 import { DatePicker, Switch, Rate, Button } from "antd";
 import { useFormik } from "formik";
 import { quanLyPhimServ } from "../../services/quanLyPhim";
-import moment from "moment";
 import * as Yup from "yup";
 import Lottie from "react-lottie";
 import * as addMovieAnimation from "./../../assets/animation/addMovie.json";
-import "./addmovie.scss";
+import "./../AddMovie/addmovie.scss";
 import { NotifyContext } from "../../template/AdminTemplate/AdminTemplate";
 import { useNavigate } from "react-router-dom";
+import { Loading3QuartersOutlined } from "@ant-design/icons";
+import dayjs from "dayjs";
 
-const AddMovie = () => {
+const Edit = (props) => {
+  const [arrInfo, setArrInfo] = useState({});
+  const [dataLoaded, setDataLoaded] = useState(false); // Cờ để theo dõi xem dữ liệu đã được tải hay chưa
+  const { pathname } = window.location;
+  const id = pathname.match(/\d+$/)[0]; // Lấy dãy số cuối cùng trong URL
+  const [imageUrl, setImageUrl] = useState(arrInfo?.hinhAnh || "");
+  const [formData, setFormData] = useState(null);
+
+  useEffect(() => {
+    quanLyPhimServ
+      .getInfoFilm(id)
+      .then((res) => {
+        console.log(res);
+        setArrInfo(res.data.content);
+        setDataLoaded(true); // Đặt cờ thành true khi dữ liệu được tải
+        const formattedDate = dayjs(res.data.content.ngayKhoiChieu).format(
+          "DD-MM-YYYY"
+        );
+        if (res.data.content.hinhAnh) {
+          setImageUrl(res.data.content.hinhAnh);
+        }
+      })
+      .catch((err) => {
+        console.log(err);
+      });
+  }, [id]);
+  useEffect(() => {
+    if (formData) {
+      quanLyPhimServ
+        .updateFilmUpload(formData)
+        .then((res) => {
+          // console.log(res);
+        })
+        .catch((err) => {
+          console.log(err);
+        });
+    }
+  }, [formData]);
   const navigate = useNavigate();
   const notify = useContext(NotifyContext);
   const defaultOptions = {
@@ -23,7 +61,7 @@ const AddMovie = () => {
     },
   };
   const disableDate = (current) => {
-    const today = moment();
+    const today = dayjs();
     return current && current < today;
   };
   const [image, setImage] = useState();
@@ -37,16 +75,20 @@ const AddMovie = () => {
     errors,
     touched,
   } = useFormik({
+    enableReinitialize: true,
     initialValues: {
-      tenPhim: "",
-      trailer: "",
-      moTa: "",
-      ngayKhoiChieu: "",
-      sapChieu: true,
-      dangChieu: false,
-      hot: true,
-      danhGia: 8,
-      hinhAnh: "",
+      maPhim: arrInfo?.maPhim,
+      tenPhim: arrInfo?.tenPhim || "",
+      trailer: arrInfo?.trailer || "",
+      moTa: arrInfo?.moTa || "",
+      ngayKhoiChieu: arrInfo?.ngayKhoiChieu
+        ? dayjs(arrInfo?.ngayKhoiChieu).format("DD-MM-YYYY")
+        : "", // Định dạng lại ngày khi gửi vào initialValues
+      sapChieu: arrInfo?.sapChieu || true,
+      dangChieu: arrInfo?.dangChieu || true,
+      hot: arrInfo?.hot || true,
+      danhGia: arrInfo?.danhGia || 0,
+      hinhAnh: arrInfo?.hinhAnh || null,
     },
     onSubmit: async (values) => {
       try {
@@ -58,17 +100,20 @@ const AddMovie = () => {
           if (key == "hinhAnh") {
             formData.append("File", values[key]);
           } else {
-            formData.append(key, values[key]);
+            if (values.hinhAnh !== null) {
+              formData.append(key, values[key]);
+            }
           }
         }
+        setFormData(formData);
 
-        const res = await quanLyPhimServ.themPhimUploadHinh(formData);
+        const res = await quanLyPhimServ.updateFilmUpload(formData);
         notify("thêm phim thành công! chuyển hướng về trang quản lý phim");
         resetForm();
         setTimeout(() => {
           navigate("/admin/quan-li-phim");
         }, 1000);
-        console.log(res);
+        // console.log(res);
       } catch (error) {
         console.log(error);
         // notify(error.respone.data.content);
@@ -81,9 +126,17 @@ const AddMovie = () => {
       ngayKhoiChieu: Yup.string().required("Vui lòng không bỏ trống"),
     }),
   });
+  if (!dataLoaded) {
+    return (
+      <div>
+        <Loading3QuartersOutlined />
+      </div>
+    );
+  }
+
   return (
     <div>
-      <h3 className="text-4xl mb-5">Thêm phim mới</h3>
+      <h3 className="text-4xl mb-5">Edit phim</h3>
       <form onSubmit={handleSubmit}>
         <div className="flex">
           <div className="w-1/2 mr-5 mb-5">
@@ -126,12 +179,13 @@ const AddMovie = () => {
             <label className="mr-2 label" htmlFor="">
               Nhập ngày chiếu
             </label>
+
             <DatePicker
               name="ngayKhoiChieu"
               onBlur={handleBlur}
               value={
                 values.ngayKhoiChieu
-                  ? moment(values.ngayKhoiChieu, "DD-MM-YYYY")
+                  ? dayjs(values.ngayKhoiChieu, "DD-MM-YYYY")
                   : null
               }
               // error={errors.ngayKhoiChieu}
@@ -141,13 +195,10 @@ const AddMovie = () => {
                 setFieldValue("ngayKhoiChieu", dateString);
               }}
               format="DD-MM-YYYY"
-              // className={
-              //   touched.ngayKhoiChieu && errors.ngayKhoiChieu ? "has-error" : ""
-              // }
             />
-            {touched.ngayKhoiChieu && errors.ngayKhoiChieu ? (
+            {/* {touched.ngayKhoiChieu && errors.ngayKhoiChieu ? (
               <p className="text-red-500 text-sm">{errors.ngayKhoiChieu}</p>
-            ) : null}
+            ) : null} */}
           </div>
           <div className="w-1/6 my-auto">
             <label className="mr-2 label" htmlFor="">
@@ -209,17 +260,37 @@ const AddMovie = () => {
           <div className="take-pic flex-col w-5/12">
             <label htmlFor="">Hình ảnh</label>
             <br />
-            <input
-              className="mb-5"
-              onChange={(event) => {
-                let urlImage = URL.createObjectURL(event.target.files[0]);
-                console.log(urlImage);
-                setImage(urlImage);
-                setFieldValue("hinhAnh", event.target.files[0]);
-              }}
-              type="file"
-            />
-            <img className="w-3/4" src={image} alt="" />
+            {values.hinhAnh && (
+              <div className="relative">
+                <img
+                  key={Math.random()}
+                  className="w-3/4"
+                  src={imageUrl}
+                  alt=""
+                />
+                <button
+                  className="absolute top-0 right-0 bg-red-600 p-2 rounded-md text-white"
+                  onClick={() => {
+                    setImage(null);
+                    setFieldValue("hinhAnh", "");
+                  }}
+                >
+                  Xóa hình ảnh
+                </button>
+              </div>
+            )}
+            {!values.hinhAnh && (
+              <input
+                className="mb-5"
+                onChange={(event) => {
+                  let urlImage = URL.createObjectURL(event.target.files[0]);
+                  console.log(urlImage);
+                  setImageUrl(URL.createObjectURL(event.target.files[0]));
+                  setFieldValue("hinhAnh", event.target.files[0]);
+                }}
+                type="file"
+              />
+            )}
           </div>
           <div className="animation_addMovie my-auto w-7/12">
             <Lottie options={defaultOptions} height={400} width={600} />
@@ -233,7 +304,7 @@ const AddMovie = () => {
             className="box"
             type="submit"
           >
-            Thêm phim
+            Cập nhật
           </button>
         </div>
       </form>
@@ -241,4 +312,4 @@ const AddMovie = () => {
   );
 };
 
-export default AddMovie;
+export default Edit;
