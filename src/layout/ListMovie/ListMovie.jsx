@@ -6,24 +6,28 @@ import { Carousel } from "antd";
 import { NavLink } from "react-router-dom";
 import "./ListMovie.scss";
 const ListMovie = () => {
-  // const [arrMovie, setArrMovie] = useState([]);
+  const [arrMovie, setArrMovie] = useState([]);
+
   // có thể coi tham số state đại diện cho object reducer có ở store
-  const { arrMovie } = useSelector((state) => state.phimSlice);
+  // const { arrMovie } = useSelector((state) => state.phimSlice);
   const dispatch = useDispatch();
   // console.log(arrMovie);
   // console.log(phimSlice);
   useEffect(() => {
-    // quanLyPhimServ
-    //   .getAllMovie()
-    //   .then((res) => {
-    //     console.log(res);
-    //     // setArrMovie(res.data.content);
-    //     dispatch(handleAllMovie(res.data.content));
-    //   })
-    //   .catch((err) => {
-    //     console.log(err);
-    //   });
-    dispatch(getAllMovieThunk("quanLyPhim/getAllMovieThunk"));
+    quanLyPhimServ
+      .getAllMovie()
+      .then((res) => {
+        const movies = res.data.content;
+        const chunks = [];
+        for (let i = 0; i < movies.length; i += 8) {
+          chunks.push(movies.slice(i, i + 8));
+        }
+        setArrMovie(chunks);
+      })
+      .catch((err) => {
+        console.log(err);
+      });
+    // dispatch(getAllMovieThunk("quanLyPhim/getAllMovieThunk"));
   }, []);
   const onChange = (currentSlide) => {
     console.log(currentSlide);
