@@ -1,4 +1,4 @@
-import React, { useEffect, useState } from "react";
+import React, { useContext, useEffect, useState } from "react";
 import "../components/info.scss";
 import { quanLyMuaVeServ } from "../../../services/quanLyMuaVe";
 import { NavLink, useNavigate, useParams } from "react-router-dom";
@@ -7,7 +7,13 @@ import { quanLyNguoiDungServ } from "../../../services/quanLyNguoiDung";
 import LichSuDatVe from "../../../components/LichSuDatVe/LichSuDatVe";
 import { useDispatch } from "react-redux";
 import { updateGheArr } from "../../../redux/slice/ticketSlice";
+import { NotifyContext } from "../../../template/UserTemplate/UserTemplate";
+import {
+  handleTurnOffLoading,
+  handleTurnOnLoading,
+} from "../../../redux/slice/loadingSlice";
 export default function InfoMovie({ gheArr }) {
+  const notify = useContext(NotifyContext);
   const [listMovie, setListMovie] = useState([]);
   const { maLichChieu } = useParams(); // Get maLichChieu from URL
   const userLocal = getLocalStorage("user");
@@ -15,11 +21,12 @@ export default function InfoMovie({ gheArr }) {
   const navigate = useNavigate();
   const dispatch = useDispatch();
   useEffect(() => {
+    dispatch(handleTurnOnLoading());
     quanLyMuaVeServ
       .getAllTicKet(maLichChieu)
 
       .then((res) => {
-        console.log(res.data.content);
+        dispatch(handleTurnOffLoading());
         setListMovie(res.data.content.thongTinPhim);
       })
       .catch((err) => {
@@ -44,7 +51,12 @@ export default function InfoMovie({ gheArr }) {
           return { ...ghe, trangThai: "DaDat" };
         });
         dispatch(updateGheArr(updatedGheArr));
-        navigate(`/account`);
+
+        notify("Đặt vé thành công!");
+
+        setTimeout(() => {
+          navigate(`/account`);
+        }, 1000);
       })
       .catch((error) => {
         console.log("ERROR");

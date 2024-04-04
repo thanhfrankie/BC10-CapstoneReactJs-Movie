@@ -1,5 +1,6 @@
 import { createAsyncThunk, createSlice } from "@reduxjs/toolkit";
 import { quanLyMuaVeServ } from "../../services/quanLyMuaVe";
+import { handleTurnOffLoading, handleTurnOnLoading } from "./loadingSlice";
 
 const initialState = {
   seatMovie: [],
@@ -7,12 +8,13 @@ const initialState = {
 };
 export const getAllTicketThunk = createAsyncThunk(
   "ticketRoom/getAllTicketThunk",
-  async (dataLocal, thunkAPI) => {
+  async (dataLocal, { _, dispatch }) => {
+    dispatch(handleTurnOnLoading());
     console.log("🚀 ~ getAllTicketThunk is called with dataLocal:", dataLocal);
     // phai truyen tham so vo ham getAllTicKet chu!!
 
     const res = await quanLyMuaVeServ.getAllTicKet(dataLocal);
-
+    dispatch(handleTurnOffLoading());
     return res.data.content.danhSachGhe;
   }
 );
