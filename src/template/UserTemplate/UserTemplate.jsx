@@ -8,10 +8,6 @@ import useResponsive from "../../hooks/useResponsive";
 export const NotifyContext = React.createContext(null);
 const UserTemplate = () => {
   const { isMobile, isTablet, isDesktop } = useResponsive();
-
-  console.log(isMobile);
-  console.log(isTablet);
-  console.log(isDesktop);
   const { isLoading } = useSelector((state) => state.loadingSlice);
   const [closeTime, setCloseTime] = useState(2000);
   const renderNotify = (notify) => {
@@ -20,7 +16,7 @@ const UserTemplate = () => {
   const handleCloseTime = (time) => {
     setCloseTime(time);
   };
-  if (isDesktop) {
+  
     return (
       <NotifyContext.Provider
         // value={{
@@ -38,11 +34,7 @@ const UserTemplate = () => {
         />
       </NotifyContext.Provider>
     );
-  } else if (isMobile) {
-    return <div>Tôi đang ở mobile</div>;
-  } else {
-    return <div>Tôi đang ở tablet</div>;
-  }
+  
 };
 
 export default UserTemplate;
