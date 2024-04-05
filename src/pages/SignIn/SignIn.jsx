@@ -86,15 +86,15 @@ const SignIn = () => {
             />
             <div>
               <p>
-                Chưa có tài khoản ư? bấm
+                Chưa có tài khoản? bấm
                 <NavLink to="/sign-up" className="mx-1 text-blue-500">
                   vào đây
                 </NavLink>
-                để đăng ký nè
+                để đăng ký
               </p>
               <button
                 type="submit"
-                className="py-2 px-5 bg-black text-white rounded-md w-full mt-2"
+                className="py-2 px-5 bg-black text-white rounded-md w-full mt-2 hover:bg-gray-700"
               >
                 Đăng nhập
               </button>
