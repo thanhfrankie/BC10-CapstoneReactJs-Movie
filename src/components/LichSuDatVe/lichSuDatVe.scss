@@ -1,10 +1,17 @@
 .history_item {
-  border: 2px solid #8e8989;
-  width: 80%;
+  border-left: 2px solid #8e8989;
+  max-width: 100%;
   margin: auto;
   justify-content: space-between; /* Chia không gian ngang đều giữa các phần tử con */
 
   .info_item {
+    border-bottom: 2px solid #8e8989;
+    padding: 20px 0;
+    align-items: center;
+
+    gap: 8px; /* Khoảng cách giữa biểu tượng và văn bản */
+  }
+  .info_item1 {
     border-bottom: 2px solid #8e8989;
     border-right: 2px solid #8e8989;
     padding: 20px 0;
@@ -19,16 +26,65 @@
 .lichSu_item {
   border-left: 2px solid #8e8989;
   background-color: #ad2d19;
+  max-width: 100%;
+}
+
+.lichsu_item {
+  max-width: 90%;
+  margin: 10px auto;
+
+  padding: 10px;
+  flex: 1 1 300px;
+
+  border-radius: 5px;
+  min-width: 300px;
+  min-height: 200px;
 }
 .lichSu_content {
   margin: 20px;
-
   max-width: 100%;
   display: grid;
-  grid-template-columns: repeat(2, 1fr); /* Chia thành 2 cột */
-  gap: 20px; /* Khoảng cách giữa các phần tử */
+  grid-template-columns: repeat(2, 1fr);
+  flex-wrap: wrap;
+  gap: 20px;
+  justify-items: stretch;
 }
 .lichsu_item {
   background-color: #fff;
   border-radius: 10px;
+
+  box-sizing: border-box;
+  /* Đảm bảo kích thước tính cả padding và border */
+  width: calc(50% - 20px); /* Đảm bảo các phần tử chia ngang đều */
 }
+@media screen and (max-width: 1024px) {
+  .history_item {
+    max-width: 100%;
+  }
+
+  .lichsu_item {
+    max-width: calc(50% - 20px);
+  }
+  .lichSu_item h2 {
+    font-size: 20px;
+  }
+  .info_item {
+    font-size: 20px;
+  }
+  .info_content h2{
+    font-size: 18px;
+  }
+}
+
+@media screen and (max-width: 768px) {
+  .history_item {
+    max-width: 100%;
+  }
+  .lichsu_item {
+    max-width: calc(100% - 20px);
+  }
+  .lichSu_content {
+    grid-template-columns: 1fr; /* Chuyển sang một cột khi màn hình nhỏ hơn 768px */
+  }
+}
+/* Thêm đoạn CSS sau để điều chỉnh kích thước và khoảng cách giữa các phần tử */

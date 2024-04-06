@@ -9,7 +9,10 @@ import {
 } from "../../redux/slice/loadingSlice";
 import "../LichSuDatVe/lichSuDatVe.scss";
 import { useDispatch } from "react-redux";
+import useResponsive from "../../hooks/useResponsive";
+
 const LichSuDatVe = ({ infoUser }) => {
+  const { isMobile, isTablet, isDesktop } = useResponsive();
   const userLocal = getLocalStorage("user");
   const dispatch = useDispatch();
   // console.log("🚀 ~ LichSuDatVe :", infoUser);
@@ -34,7 +37,8 @@ const LichSuDatVe = ({ infoUser }) => {
   }, []);
 
   return (
-    <div className=" history_item flex container">
+    
+    <div className=" history_item flex ">
       <div className="container w-90 font-bold text-3xl">
         <div className="grid info_content">
           <div className="info_item flex bg-red-500 text-white">
@@ -68,7 +72,7 @@ const LichSuDatVe = ({ infoUser }) => {
         </div>
       </div>
       <div className="container w-90  text-3xl lichSu_item  ">
-        <div className="  text-white info_item font-bold">
+        <div className="  text-white info_item1 font-bold">
           <h2 className="text-left  ml-5">Lịch Sử Đặt Vé</h2>
         </div>
         <div className="lichSu_content ">
@@ -98,6 +102,7 @@ const LichSuDatVe = ({ infoUser }) => {
         </div>
       </div>
     </div>
+   
   );
 };
 

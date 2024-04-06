@@ -64,6 +64,7 @@ export default function InfoMovie({ gheArr }) {
   };
 
   return (
+    // {isDekstop &&
     <div className="movie_info  mt-5 min-h-screen  ">
       <div className="">
         <div>
