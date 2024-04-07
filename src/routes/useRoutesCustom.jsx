@@ -14,6 +14,7 @@ import EditUser from "../pages/UserManagerment/EditUser";
 import SignUp from "../pages/SignUp/SignUp";
 import Purchase from "../layout/Purchase/Purchase";
 import LichSuDatVe from "../components/LichSuDatVe/LichSuDatVe";
+import Detail from "../pages/Detail/Detail";
 const useRoutesCustom = () => {
   const routes = useRoutes([
     {
@@ -39,6 +40,10 @@ const useRoutesCustom = () => {
         {
           path: "account",
           element: <LichSuDatVe />,
+        },
+        {
+          path: "detail/:id",
+          element: <Detail />,
         },
       ],
     },

@@ -1,0 +1,27 @@
+.top-content {
+  height: 400px;
+  margin-bottom: 10px;
+}
+.top-content img {
+  height: 100%;
+  object-fit: cover;
+  border-radius: 5px;
+}
+.top-content2 {
+  height: 130px;
+  margin-bottom: 5px;
+}
+.top-content2 img {
+  height: 100%;
+  object-fit: cover;
+  border-radius:5px;
+  
+}
+.bottom-content a{
+    font-size: 20px;
+    font-weight: bold;
+    
+}
+.bottom-content p{
+    font-size: 20px;
+}

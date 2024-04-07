@@ -18,7 +18,7 @@ const Header = () => {
   };
   return (
     <header>
-      <nav className="bg-white border-gray-200 px-4 lg:px-6 py-2.5 ">
+      <nav className="fixed top-0 left-0 z-20 w-full bg-white border-gray-200 px-4 lg:px-6 py-2.5 h-20 pt-4">
         <div className="flex flex-wrap justify-between items-center mx-auto max-w-screen-xl">
           <a href="#" className="flex items-center">
             <img src={logo} className="mr-3 h-6 sm:h-9" alt="CyberSoft Logo" />
@@ -27,12 +27,13 @@ const Header = () => {
             </span>
           </a>
           <div className="flex items-center lg:order-2">
+         
             {isLoggedIn ? (
               <div className="flex items-center justify-center">
                 <p>{userLocal.hoTen}</p>
                 <button
                   onClick={handleLogout}
-                  className="text-gray-800 hover:bg-gray-50 focus:ring-4 focus:ring-gray-300 font-medium rounded-lg text-sm px-4 lg:px-5 py-2 lg:py-2.5 mr-2 focus:outline-none"
+                  className="text-gray-800 bg-slate-400 hover:bg-gray-500  hover:text-white focus:ring-4 focus:ring-gray-300 font-medium rounded-lg text-sm px-4 lg:px-5 py-2 lg:py-2.5 ml-2"
                 >
                   Đăng xuất
                 </button>
@@ -40,11 +41,19 @@ const Header = () => {
             ) : (
               <NavLink
                 to="/sign-in"
-                className="text-gray-800 hover:bg-gray-50 focus:ring-4 focus:ring-gray-300 font-medium rounded-lg text-sm px-4 lg:px-5 py-2 lg:py-2.5 mr-2  focus:outline-none "
+                className="text-gray-800 bg-slate-400 hover:bg-gray-500  hover:text-white focus:ring-4 focus:ring-gray-300 font-medium rounded-lg text-sm px-4 lg:px-5 py-2 lg:py-2.5 mr-2"
               >
                 Đăng nhập
               </NavLink>
+              
+              
             )}
+             <NavLink
+              to="/sign-up"
+              className="text-gray-800 bg-slate-400 hover:bg-gray-500  hover:text-white focus:ring-4 focus:ring-gray-300 font-medium rounded-lg text-sm px-4 lg:px-5 py-2 lg:py-2.5 mr-2"
+            >
+              Đăng Ký
+            </NavLink>
           </div>
           <div
             className="hidden justify-between items-center w-full lg:flex lg:w-auto lg:order-1"
@@ -54,7 +63,7 @@ const Header = () => {
               <li>
                 <NavLink
                   to="/"
-                  className="block py-2 pr-4 pl-3  rounded bg-primary-700 lg:bg-transparent lg:text-primary-700 lg:p-0 "
+                  className="block  py-2 pr-4 pl-3 text-gray-700 border-b border-gray-100 hover:bg-gray-50 lg:hover:bg-transparent lg:border-0 lg:hover:text-cyan-600 lg:p-0"
                   aria-current="page"
                 >
                   Lịch Chiếu
@@ -63,7 +72,7 @@ const Header = () => {
               <li>
                 <NavLink
                   to="/"
-                  className="block py-2 pr-4 pl-3  rounded bg-primary-700 lg:bg-transparent lg:text-primary-700 lg:p-0 "
+                  className="block  py-2 pr-4 pl-3 text-gray-700 border-b border-gray-100 hover:bg-gray-50 lg:hover:bg-transparent lg:border-0 lg:hover:text-cyan-600 lg:p-0"
                   aria-current="page"
                 >
                   Cụm rạp
@@ -72,7 +81,7 @@ const Header = () => {
               <li>
                 <NavLink
                   to="/"
-                  className="block py-2 pr-4 pl-3  rounded bg-primary-700 lg:bg-transparent lg:text-primary-700 lg:p-0 "
+                  className="block  py-2 pr-4 pl-3 text-gray-700 border-b border-gray-100 hover:bg-gray-50 lg:hover:bg-transparent lg:border-0 lg:hover:text-cyan-600 lg:p-0"
                   aria-current="page"
                 >
                   Tin tức
@@ -81,7 +90,7 @@ const Header = () => {
               <li>
                 <NavLink
                   to="/"
-                  className="block py-2 pr-4 pl-3  rounded bg-primary-700 lg:bg-transparent lg:text-primary-700 lg:p-0 "
+                  className="block  py-2 pr-4 pl-3 text-gray-700 border-b border-gray-100 hover:bg-gray-50 lg:hover:bg-transparent lg:border-0 lg:hover:text-cyan-600 lg:p-0"
                   aria-current="page"
                 >
                   Ứng dụng

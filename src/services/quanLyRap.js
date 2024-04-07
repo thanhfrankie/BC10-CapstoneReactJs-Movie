@@ -8,10 +8,16 @@ export const quanLyRapServ = {
   getInfoHeThongRap() {
     return http.get("/QuanLyRap/LayThongTinHeThongRap");
   },
+  getAllLogoRap: () => {
+    return http.get("/QuanLyRap/LayThongTinHeThongRap?maHeThongRap");
+  },
   getInfoCumRapHeThong(maHeThongRap) {
     return http.get(
       `/QuanLyRap/LayThongTinCumRapTheoHeThong?maHeThongRap=${maHeThongRap}`
     );
+  },
+  getAllMaPhimRap: () => {
+    return http.get("QuanLyRap/LayThongTinLichChieuPhim?MaPhim");
   },
   createShowTime(thongTinLichChieu) {
     const userLocal = getLocalStorage("user");
