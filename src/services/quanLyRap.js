@@ -16,8 +16,8 @@ export const quanLyRapServ = {
       `/QuanLyRap/LayThongTinCumRapTheoHeThong?maHeThongRap=${maHeThongRap}`
     );
   },
-  getAllMaPhimRap: () => {
-    return http.get("QuanLyRap/LayThongTinLichChieuPhim?MaPhim");
+  getAllMaPhimRap: (maPhim) => {
+    return http.get(`QuanLyRap/LayThongTinLichChieuPhim?MaPhim=${maPhim}`);
   },
   createShowTime(thongTinLichChieu) {
     const userLocal = getLocalStorage("user");
