@@ -1,91 +1,148 @@
 import React, { useEffect, useState } from "react";
 import { quanLyPhimServ } from "../../services/quanLyPhim";
-import { useSelector, useDispatch } from "react-redux";
+import ReactPlayer from "react-player";
+import { useDispatch, useSelector } from "react-redux";
 import { getAllMovieThunk, handleAllMovie } from "../../redux/slice/phimSlice";
-import { Carousel } from "antd";
+import Slider from "react-slick";
 import { NavLink } from "react-router-dom";
-import "./ListMovie.scss";
-const ListMovie = () => {
-  const [arrMovie, setArrMovie] = useState([]);
+import "./ListMovie.scss"
 
-  // có thể coi tham số state đại diện cho object reducer có ở store
-  // const { arrMovie } = useSelector((state) => state.phimSlice);
+const ListMovie = () => {
+  // const [arrMovie, setArrMovie] = useState([]);
+  // state đại diện cho object reducer có ở store
+
+  const { arrMovie } = useSelector((state) => state.phimSlice);
   const dispatch = useDispatch();
-  // console.log(arrMovie);
-  // console.log(phimSlice);
+  console.log(arrMovie);
+  const [openModal, setOpenModal] = useState(false);
+  const [selectedMovieId, setSelectedMovieId] = useState(null);
+
+  const handleOpen = (idMovie) => {
+    setSelectedMovieId(idMovie);
+    setOpenModal(true);
+  };
+
+  const handleCloseModal = () => {
+    setOpenModal(false);
+    setSelectedMovieId(null);
+  };
+
   useEffect(() => {
-    quanLyPhimServ
-      .getAllMovie()
-      .then((res) => {
-        const movies = res.data.content;
-        const chunks = [];
-        for (let i = 0; i < movies.length; i += 8) {
-          chunks.push(movies.slice(i, i + 8));
-        }
-        setArrMovie(chunks);
-      })
-      .catch((err) => {
-        console.log(err);
-      });
-    // dispatch(getAllMovieThunk("quanLyPhim/getAllMovieThunk"));
+    // quanLyPhimServ
+    //   .getAllMovie()
+    //   .then((res) => {
+    //     console.log(res);
+    //     // setArrMovie(res.data.content);
+    //     dispatch(handleAllMovie(res.data.content));
+    //   })
+    //   .catch((err) => {
+    //     console.log(err);
+    //   });
+    dispatch(getAllMovieThunk("quanLyPhim/getAllMovieThunk"));
   }, []);
   const onChange = (currentSlide) => {
     console.log(currentSlide);
   };
+  const settings = {
+    rows: 2,
+    dots: true,
+    infinite: true,
+    speed: 500,
+    slidesToShow: 4,
+    slidesToScroll: 3,
+  };
   return (
-    <div className="listMovie">
-      <Carousel
-        dots={true}
-        arrows={false}
-        afterChange={onChange}
-        nextArrow={
-          <div>
-            <i class="fa-solid fa-chevron-right"></i>
-          </div>
-        }
-        prevArrow={
-          <div>
-            <i class="fa-solid fa-chevron-left"></i>
-          </div>
-        }
-      >
-        {arrMovie.map((chunk, index) => (
-          <div className="">
-            <div key={index}>
-              <div className="grid grid-cols-4 gap-4">
-                {chunk.map((movie) => (
-                  <div key={movie.maPhim}>
-                    <div className="movie_item space-y-4">
-                      <div className="movie_content">
-                        <div>
-                          <img
-                            className=" img_content w-full h-96 object-cover rounded mt-3 mb-5 "
-                            src={movie.hinhAnh}
-                            alt=""
-                          />
-                          <div>
-                            <span></span>
-                          </div>
-                        </div>
-                        <h3>
-                          <span className="bg-orange-500 text-white rounded py-1 px-2 text-lg font-semibold mr-3">
-                            C18
-                          </span>
-                          <span className="text-xl font-semibold">
-                            {movie.tenPhim}
-                          </span>
-                        </h3>
-                        <p className="line-clamp-2">{movie.moTa}</p>
+    <div className="slider-container mb-20">
+      <Slider {...settings} >
+        {arrMovie.map((movie, index) => {
+          return (
+            <div
+              style={{ width: "800px" }}
+              className="movie_item group relative "
+              key={index}
+            >
+              <div className="m-5 ">
+                <div>
+                  <img
+                    className="group-hover:opacity-50 transition-opacity duration-300 w-full h-96"
+                    src={movie.hinhAnh}
+                    alt=""
+                  />
+                  <div className="absolute inset-0 flex items-center justify-center">
+                    <button
+                      className="bg-transparent rounded-none cursor-pointer p-0"
+                      onClick={() => handleOpen(movie.maPhim)}
+                    >
+                      <div>
+                        <i
+                          className="opacity-0 rounded-full bg-white hover:bg-slate-400 group-hover:opacity-100 transition-opacity duration-300 fa-regular fa-circle-play font-extrabold"
+                          style={{
+                            width: "50px",
+                            height: "50px",
+                            fontSize: "50px",
+                            display: "inline-block",
+                          }}
+                        ></i>
                       </div>
-                      <NavLink className="btn_button">Mua Vé</NavLink>
-                    </div>
+                    </button>
                   </div>
-                ))}
+                </div>
+                <br />
+                <div className="group-hover:opacity-0">
+                  <h3 className=" h-14">
+                    <span className="bg-orange-500 text-white rounded px-2 mr-3 text-lg font-semibold">
+                      C18
+                    </span>
+                    <span className=" text-lg font-semibold ">
+                      {movie.tenPhim}
+                    </span>
+                  </h3>
+                  
+                  <div>
+                  <p className="line-clamp-3">{movie.moTa}</p>
+                  </div>
+                </div>
+              </div>
+
+              <div className="">
+                <NavLink to={`/detail/${movie.maPhim}`}>
+                  
+                  <button style={{margin:"24px 19px" , width:"90%"}} className="absolute bottom-20 opacity-0 group-hover:opacity-100 transition-opacity duration-300 w-full px-10 py-5 bg-red-700 hover:bg-red-900 rounded text-white text-lg font-semibold ">
+                    
+                    Mua Vé
+                  </button>
+                </NavLink>
               </div>
             </div>
+          );
+        })}
+      </Slider>
+      {openModal && selectedMovieId && (
+        <div className="fixed z-20 top-0 left-0 w-full h-full bg-black bg-opacity-50 flex justify-center items-center">
+          <div className="relative modal-content">
+            {arrMovie.map((movie, index) => {
+              if (movie.maPhim === selectedMovieId) {
+                return (
+                  <ReactPlayer
+                    key={index}
+                    url={movie.trailer}
+                    controls
+                    width="800px"
+                    height="450px"
+                  />
+                );
+              }
+              return null;
+            })}
+            <button
+              className="absolute top-2 right-2 text-white"
+              onClick={handleCloseModal}
+            >
+              Close
+            </button>
           </div>
-        ))}
-      </Carousel>
+        </div>
+      )}
     </div>
   );
 };

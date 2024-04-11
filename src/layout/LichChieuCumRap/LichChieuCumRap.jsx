@@ -26,15 +26,6 @@ export default function LichChieuCumRap() {
         <div className="cum-rap ">
           <Tabs
             tabPosition="left"
-            //   items={new Array(3).fill(null).map((_, i) => {
-            //     const id = String(i + 1);
-            //     return {
-            //       label: `Tab ${id}`,
-            //       key: id,
-            //       children: `Content of Tab ${id}`,
-            //     };
-
-            //   })}
             style={{
               height: 700,
             }}
@@ -42,7 +33,7 @@ export default function LichChieuCumRap() {
               return {
                 label: (
                   <div className="img-content ">
-                    <img className="w-16 " src={cumrap.logo} />,
+                    <img className="w-16 opacity-100 hover:opacity-70 " src={cumrap.logo} />,
                   </div>
                 ),
                 key: cumrap.maHeThongRap,

@@ -1,0 +1,14 @@
+.no-borderRadiusImportant {
+    border-radius: 0px !important;
+  }
+.jss {
+    color: #f5f7ea;
+    width: 30px;
+    height: 30px;
+    padding-bottom: 24px;
+    background-color: #212121;
+    border-radius: 50%;
+    margin-bottom: 10px;
+    display: inline-block;
+    
+}
