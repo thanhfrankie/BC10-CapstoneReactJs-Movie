@@ -1,41 +1,68 @@
-// Định dạng form chính
 .form_signUp {
-    width: 400px; // Độ rộng của form
-    padding: 20px; // Khoảng cách lề bên trong form
-    border: 1px solid #ccc; // Đường viền của form
-    border-radius: 8px; // Bo tròn góc của form
-    background-color: #f9f9f9; // Màu nền của form
-  
-    // Định dạng tiêu đề
-    h1 {
-      text-align: center; // Căn giữa tiêu đề
-      color: #333; // Màu chữ của tiêu đề
-      margin-bottom: 20px; // Khoảng cách dưới của tiêu đề
+  width: 100%; // Đặt chiều rộng ban đầu là 100% để làm cho nó responsive
+}
+
+/* Bạn có thể thêm các media query khác nếu cần để điều chỉnh responsiveness chi tiết hơn */
+.form_signUp {
+  // Base styles
+  width: 90%;
+  @media (min-width: 640px) {
+    width: 70%; // Điều chỉnh chiều rộng cho màn hình kích thước trung bình
+  }
+
+  @media (min-width: 768px) {
+    width: 50%; 
+  }
+
+  @media (min-width: 1024px) {
+    width: 35%; 
+  }
+  .formInput {
+    width: 100%; 
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    transition: width 0.5s ease; 
+    @media (min-width: 640px) {
+      width: 70%;
     }
-  
-    // Định dạng input
-    input {
-      width: 100%; // Chiều rộng của input
-      padding: 10px; // Khoảng cách lề bên trong input
-      margin-bottom: 15px; // Khoảng cách dưới của input
-      border: 1px solid #ccc; // Đường viền của input
-      border-radius: 5px; // Bo tròn góc của input
+
+    @media (min-width: 768px) {
+      width: 50%; 
     }
-  
-    // Định dạng nút Đăng ký
-    button[type="submit"] {
-      width: 100%; // Chiều rộng của nút
-      padding: 10px; // Khoảng cách lề bên trong nút
-      background-color: #007bff; // Màu nền của nút
-      color: #fff; // Màu chữ của nút
-      border: none; // Loại bỏ đường viền của nút
-      border-radius: 5px; // Bo tròn góc của nút
-      cursor: pointer; // Hiển thị con trỏ khi rê chuột qua nút
-      transition: background-color 0.3s; // Hiệu ứng chuyển đổi màu nền khi hover
-  
-      &:hover {
-        background-color: #0056b3; // Màu nền của nút khi hover
-      }
+
+    @media (min-width: 1024px) {
+      width: 80%; 
     }
   }
-  
+
+  .input_custom {
+
+    input {
+
+      padding: 10px 15px; 
+      font-size: 16px; 
+    }
+  }
+
+  // For tablets
+  @media only screen and (max-width: 1024px) {
+    .formInput {
+      width: 100%;
+    }
+  }
+
+  // For mobile devices
+  @media only screen and (max-width: 768px) {
+    .formInput {
+      width: 70%; 
+    }
+  }
+
+  // For smaller mobile devices
+  @media only screen and (max-width: 480px) {
+    .formInput {
+      width: 100%; 
+    }
+  }
+}

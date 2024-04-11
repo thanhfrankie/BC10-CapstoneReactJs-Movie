@@ -10,8 +10,10 @@ import { NotifyContext } from "../../template/UserTemplate/UserTemplate";
 import { useNavigate } from "react-router-dom";
 import { saveLocalStorage, validationMessage } from "../../utils/util";
 
+import SignInMobile from "../SignInMobile/SignInMobile";
 import SignIn from "../SignIn/SignIn";
 import useResponsive from "../../hooks/useResponsive";
+import "./SignUp.scss";
 const SignUp = () => {
   const { isMobile, isTablet, isDesktop } = useResponsive();
   const [showPassword, setShowPassword] = useState(false);
@@ -79,17 +81,17 @@ const SignUp = () => {
     },
   };
   return (
-    <div className="w-screen h-screen bg-gray-400">
+    <div className="w-screen h-screen bg-gray-400 relative">
       <div className="container flex justify-center items-center">
         <div className="container absolute left-1/2 top-1/2 transform -translate-x-1/2 -translate-y-1/2 z-0 opacity-50 pointer-events-none">
-          <SignIn />
+          <SignInMobile />
         </div>
-        {isDesktop && (
-          <div className="form_signUp  w-1/3 h-2/3 flex items-center justify-center flex-col absolute left-1/2 top-1/2 transform -translate-x-1/2 -translate-y-1/2 p-10 border  rounded-md space-y-3 z-10 bg-white bg-opacity-80 ">
+      
+          <div className="form_signUp  w-1/3 h-4/5  flex items-center justify-center flex-col absolute left-1/2 top-1/2 transform -translate-x-1/2 -translate-y-1/2 p-10 border  rounded-md space-y-5 z-10 bg-white bg-opacity-80 ">
             <h1 className="flex items-center justify-center text-black text-xl font-semibold	">
               Đăng ký thành viên
             </h1>
-            <form onSubmit={handleSubmit} className="space-y-6 w-3/5">
+            <form onSubmit={handleSubmit} className="formInput space-y-6">
               <InputCustom
                 placeholder="Họ tên *"
                 id="hoTen"
@@ -167,7 +169,7 @@ const SignUp = () => {
               <div>
                 <button
                   type="submit"
-                  className="py-2 px-5 bg-black text-white rounded-md w-full hover:bg-gray-700"
+                  className="py-2 px-5 bg-black text-white rounded-md w-full min-w-80 hover:bg-gray-700"
                 >
                   Đăng ký
                 </button>
@@ -181,203 +183,8 @@ const SignUp = () => {
               </p>
             </form>
           </div>
-        )}
-        {isTablet && (
-          <div className="form_signUp max-w-xl  h-2/3 flex items-center justify-center flex-col absolute left-1/2 top-1/2 transform -translate-x-1/2 -translate-y-1/2 p-10 border  rounded-md space-y-3 z-10 bg-white bg-opacity-80 ">
-            <h1 className="flex items-center justify-center text-black text-xl font-semibold	">
-              Đăng ký thành viên
-            </h1>
-            <form onSubmit={handleSubmit} className="space-y-6 w-3/5">
-              <InputCustom
-                placeholder="Họ tên *"
-                id="hoTen"
-                onChange={handleChange}
-                onBlur={handleBlur}
-                error={errors.hoTen}
-                touched={touched.hoTen}
-                name="hoTen"
-                value={values.hoTen}
-              />
-              <InputCustom
-                placeholder="Tài khoản *"
-                id="taiKhoan"
-                onChange={handleChange}
-                onBlur={handleBlur}
-                error={errors.taiKhoan}
-                touched={touched.taiKhoan}
-                name="taiKhoan"
-                value={values.taiKhoan}
-              />
-              <div className="relative">
-                <InputCustom
-                  placeholder="Mật khẩu *"
-                  id="matKhau"
-                  onChange={handleChange}
-                  type={showPassword ? "text" : "password"}
-                  onBlur={handleBlur}
-                  error={errors.matKhau}
-                  touched={touched.matKhau}
-                  name="matKhau"
-                  value={values.matKhau}
-                />
-                <div
-                  className={`absolute top-1/2 right-2 transform flex items-center ${
-                    errors.matKhau && touched.matKhau
-                      ? "-translate-y-5"
-                      : "-translate-y-1/3"
-                  }`}
-                >
-                  <button
-                    type="button"
-                    onClick={() => setShowPassword(!showPassword)}
-                    className="mr-2"
-                  >
-                    {showPassword ? (
-                      <i className="fas fa-eye text-gray-500"></i>
-                    ) : (
-                      <i className="fas fa-eye-slash text-gray-500"></i>
-                    )}
-                  </button>
-                </div>
-              </div>
-              <InputCustom
-                placeholder="Email *"
-                id="email"
-                onChange={handleChange}
-                onBlur={handleBlur}
-                type="email"
-                error={errors.email}
-                touched={touched.email}
-                name="email"
-                value={values.email}
-              />
-
-              <InputCustom
-                placeholder="Số điện thoại *"
-                id="soDt"
-                onChange={handleChange}
-                onBlur={handleBlur}
-                error={errors.soDt}
-                touched={touched.soDt}
-                name="soDt"
-                value={values.soDt}
-              />
-              <div>
-                <button
-                  type="submit"
-                  className="py-2 px-5 bg-black text-white rounded-md w-full hover:bg-gray-700"
-                >
-                  Đăng ký
-                </button>
-              </div>
-              <p className={`text-end`}>
-                Đã có tài khoản?
-                <NavLink to="/sign-in" className="mx-1 text-blue-500 ">
-                  Đăng nhập
-                </NavLink>
-                ngay
-              </p>
-            </form>
-          </div>
-        )}
-        {isMobile && (
-          <div className="form_signUp  min-w-96 h-2/3 flex items-center justify-center flex-col absolute left-1/2 top-1/2 transform -translate-x-1/2 -translate-y-1/2 p-10 border  rounded-md space-y-3 z-10 bg-white bg-opacity-80 ">
-            <h1 className="flex items-center justify-center text-black text-xl font-semibold	">
-              Đăng ký thành viên
-            </h1>
-            <form onSubmit={handleSubmit} className="space-y-6 w-3/5">
-              <InputCustom
-                placeholder="Họ tên *"
-                id="hoTen"
-                onChange={handleChange}
-                onBlur={handleBlur}
-                error={errors.hoTen}
-                touched={touched.hoTen}
-                name="hoTen"
-                value={values.hoTen}
-              />
-              <InputCustom
-                placeholder="Tài khoản *"
-                id="taiKhoan"
-                onChange={handleChange}
-                onBlur={handleBlur}
-                error={errors.taiKhoan}
-                touched={touched.taiKhoan}
-                name="taiKhoan"
-                value={values.taiKhoan}
-              />
-              <div className="relative">
-                <InputCustom
-                  placeholder="Mật khẩu *"
-                  id="matKhau"
-                  onChange={handleChange}
-                  type={showPassword ? "text" : "password"}
-                  onBlur={handleBlur}
-                  error={errors.matKhau}
-                  touched={touched.matKhau}
-                  name="matKhau"
-                  value={values.matKhau}
-                />
-                <div
-                  className={`absolute top-1/2 right-2 transform flex items-center ${
-                    errors.matKhau && touched.matKhau
-                      ? "-translate-y-5"
-                      : "-translate-y-1/3"
-                  }`}
-                >
-                  <button
-                    type="button"
-                    onClick={() => setShowPassword(!showPassword)}
-                    className="mr-2"
-                  >
-                    {showPassword ? (
-                      <i className="fas fa-eye text-gray-500"></i>
-                    ) : (
-                      <i className="fas fa-eye-slash text-gray-500"></i>
-                    )}
-                  </button>
-                </div>
-              </div>
-              <InputCustom
-                placeholder="Email *"
-                id="email"
-                onChange={handleChange}
-                onBlur={handleBlur}
-                type="email"
-                error={errors.email}
-                touched={touched.email}
-                name="email"
-                value={values.email}
-              />
-
-              <InputCustom
-                placeholder="Số điện thoại *"
-                id="soDt"
-                onChange={handleChange}
-                onBlur={handleBlur}
-                error={errors.soDt}
-                touched={touched.soDt}
-                name="soDt"
-                value={values.soDt}
-              />
-              <div>
-                <button
-                  type="submit"
-                  className="py-2 px-5 bg-black text-white rounded-md w-full hover:bg-gray-700"
-                >
-                  Đăng ký
-                </button>
-              </div>
-              <p className={`text-end`}>
-                Đã có tài khoản?
-                <NavLink to="/sign-in" className="mx-1 text-blue-500 ">
-                  Đăng nhập
-                </NavLink>
-                ngay
-              </p>
-            </form>
-          </div>
-        )}
+      
+        
       </div>
     </div>
   );
