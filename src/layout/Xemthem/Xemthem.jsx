@@ -10,6 +10,7 @@ const { TabPane } = Tabs;
 
 const Xemthem = () => {
   return (
+    <div id="tinTuc" >
     <Tabs defaultActiveKey="1" centered>
       <TabPane tab={<span className="tabText ">Điện ảnh 24h</span>} key="1">
         <FormDienAnh/>
@@ -21,6 +22,7 @@ const Xemthem = () => {
         <FormKm />
       </TabPane>
     </Tabs>
+    </div>
   );
 };
 

@@ -26,7 +26,7 @@ const Application = () => {
   }, []);
 
   return (
-    <div className="appliMovie w-full">
+    <div className="appliMovie w-full " id="ungDung" >
       <div className="appTitle w-full container grid grid-cols-2 justify-center items-center">
         <div className="col-span-1 flex flex-col justify-center items-center">
           <h1>Ứng dụng tiện lợi dành cho người yêu điện ảnh</h1>
@@ -39,9 +39,9 @@ const Application = () => {
           </button>
           <p>TIX có hai phiên bản IOS & Android</p>
         </div>
-        <div className="col-span-1">
+        <div className="col-span-1 imgslider">
           <animated.img
-            className="imgslider"
+            className="imgslider2"
             src={images[index]}
             style={springProps}
             alt=""

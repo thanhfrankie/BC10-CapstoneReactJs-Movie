@@ -1,11 +1,12 @@
 import React, { useEffect, useState } from "react";
 import { quanLyPhimServ } from "../../services/quanLyPhim";
+import { quanLyRapServ } from "../../services/quanLyRap";
 import ReactPlayer from "react-player";
 import { useDispatch, useSelector } from "react-redux";
 import { getAllMovieThunk, handleAllMovie } from "../../redux/slice/phimSlice";
 import Slider from "react-slick";
 import { NavLink } from "react-router-dom";
-import "./ListMovie.scss"
+import "./ListMovie.scss";
 
 const ListMovie = () => {
   // const [arrMovie, setArrMovie] = useState([]);
@@ -52,8 +53,8 @@ const ListMovie = () => {
     slidesToScroll: 3,
   };
   return (
-    <div className="slider-container mb-20">
-      <Slider {...settings} >
+    <div id="lichChieu" className="slider-container mb-20">
+      <Slider {...settings}>
         {arrMovie.map((movie, index) => {
           return (
             <div
@@ -97,21 +98,21 @@ const ListMovie = () => {
                       {movie.tenPhim}
                     </span>
                   </h3>
-                  
+
                   <div>
-                  <p className="line-clamp-3">{movie.moTa}</p>
+                    <p className="line-clamp-3">{movie.moTa}</p>
                   </div>
                 </div>
-              </div>
-
-              <div className="">
-                <NavLink to={`/detail/${movie.maPhim}`}>
-                  
-                  <button style={{margin:"24px 19px" , width:"90%"}} className="absolute bottom-20 opacity-0 group-hover:opacity-100 transition-opacity duration-300 w-full px-10 py-5 bg-red-700 hover:bg-red-900 rounded text-white text-lg font-semibold ">
-                    
-                    Mua Vé
-                  </button>
-                </NavLink>
+                <div className="">
+                  <NavLink to={`/detail/${movie.maPhim}`}>
+                    <button
+                      style={{ margin: "24px 0px", width: "88%" }}
+                      className="absolute bottom-20 opacity-0 group-hover:opacity-100 transition-opacity duration-300 w-full px-10 py-5 bg-red-700 hover:bg-red-900 rounded text-white text-lg font-semibold "
+                    >
+                      Mua Vé
+                    </button>
+                  </NavLink>
+                </div>
               </div>
             </div>
           );
