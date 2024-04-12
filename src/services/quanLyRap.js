@@ -8,17 +8,25 @@ export const quanLyRapServ = {
   getInfoHeThongRap() {
     return http.get("/QuanLyRap/LayThongTinHeThongRap");
   },
-  getAllLogoRap: () => {
-    return http.get("/QuanLyRap/LayThongTinHeThongRap?maHeThongRap");
-  },
+ 
   getInfoCumRapHeThong(maHeThongRap) {
     return http.get(
       `/QuanLyRap/LayThongTinCumRapTheoHeThong?maHeThongRap=${maHeThongRap}`
     );
   },
-  getAllMaPhimRap: (maPhim) => {
-    return http.get(`QuanLyRap/LayThongTinLichChieuPhim?MaPhim=${maPhim}`);
+  layThongTinLichChieuPhim(maPhim) {
+    return http.get(`/QuanLyRap/LayThongTinLichChieuPhim?maPhim=${maPhim}`);
   },
+ 
+  layThongTinHeThongRap() {
+    return http.get(`/QuanLyRap/LayThongTinHeThongRap`);
+  },
+  layThongTinCumRap(maHeThongRap) {
+    return http.get(
+      `/QuanLyRap/LayThongTinCumRapTheoHeThong?maHeThongRap=${maHeThongRap}`
+    );
+  },
+
   createShowTime(thongTinLichChieu) {
     const userLocal = getLocalStorage("user");
     return http.post("/QuanLyDatVe/TaoLichChieu", thongTinLichChieu, {

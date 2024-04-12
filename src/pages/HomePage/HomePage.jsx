@@ -7,24 +7,22 @@ import { NotifyContext } from "../../template/UserTemplate/UserTemplate";
 import Xemthem from"../../layout/Xemthem/Xemthem";
 import Footer from"../../layout/Footer/Footer";
 import Application from "../../layout/Application/Application"
+import ScrollToTopButton from "../../layout/ScrollToTopButton/ScrollToTopButton";
+
+
+
 const HomePage = () => {
   // const notify = useContext(NotifyContext);
   return (
     <div>
       {/* header  */}
       <Header />
-      {/* <button
-        onClick={() => {
-          notify("Tui test thôi");
-        }}
-      >
-        Bấm thử nè
-      </button> */}
+   
       {/* banner  */}
       <Banner />
       {/* list movie  */}
       <div className="container">
-        <ListMovie className="container"/>
+        <ListMovie />
         <LichChieuCumRap  />
       </div>
       <div className=" m-12">
@@ -35,6 +33,7 @@ const HomePage = () => {
       </div>
       {/* footer */}
       <Footer />
+      <ScrollToTopButton/>
     </div>
   );
 };

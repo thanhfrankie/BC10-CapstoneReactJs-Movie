@@ -54,7 +54,7 @@ const Pooter = () => {
   
     useEffect(() => {
       // Gọi API để lấy thông tin về tất cả các logo
-      quanLyRapServ.getAllLogoRap()
+      quanLyRapServ.layThongTinHeThongRap()
       
         .then(response => {
           const data = response.data;

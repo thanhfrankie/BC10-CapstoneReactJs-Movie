@@ -17,11 +17,11 @@ export default function LichChieuCumRap() {
       });
   }, []);
   return (
-    <div>
+    <div className="container" id="cumRap">
       <h2 className="text-center font-bold text-3xl my-5">
         Danh Sách Lịch Chiếu Cụm Rạp
       </h2>
-      <div className="danh-sach   ">
+      <div className="danh-sach  ">
         {/* tab lịch chiếu cụm rạp  */}
         <div className="cum-rap ">
           <Tabs
