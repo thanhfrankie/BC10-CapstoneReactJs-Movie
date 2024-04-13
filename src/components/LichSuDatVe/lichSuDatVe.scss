@@ -1,24 +1,33 @@
 .history_item {
   border-left: 2px solid #8e8989;
-  max-width: 100%;
+
+  max-width: 90%;
   margin: auto;
   justify-content: space-between; /* Chia không gian ngang đều giữa các phần tử con */
-
+  margin-top: 100px;
+  margin-bottom: 100px;
   .info_item {
     border-bottom: 2px solid #8e8989;
-    padding: 20px 0;
+    padding: 20px 0 !important;
     align-items: center;
-
-    gap: 8px; /* Khoảng cách giữa biểu tượng và văn bản */
+    width: 200%;
+    gap: 8px;
+    
   }
   .info_item1 {
+    display: flex;
+    align-items: center;
+    gap: 8px;
     border-bottom: 2px solid #8e8989;
     border-right: 2px solid #8e8989;
-    padding: 20px 0;
-    align-items: center;
-
-    gap: 8px; /* Khoảng cách giữa biểu tượng và văn bản */
+    padding: 20px 0 ;
   }
+}
+.flex {
+  padding-bottom: 0 !important;
+}
+.border_left {
+  border-bottom: 2px solid #8e8989;
 }
 .text_item {
   font-size: 18px;
@@ -26,7 +35,7 @@
 .lichSu_item {
   border-left: 2px solid #8e8989;
   background-color: #ad2d19;
-  max-width: 100%;
+  border-bottom: 2px solid #8e8989;
 }
 
 .lichsu_item {
@@ -71,7 +80,7 @@
   .info_item {
     font-size: 20px;
   }
-  .info_content h2{
+  .info_content h2 {
     font-size: 18px;
   }
 }

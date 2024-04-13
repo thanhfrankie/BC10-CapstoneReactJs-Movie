@@ -1,22 +1,118 @@
 hr {
-  margin-left: 10px; /* Giảm khoảng cách ở bên trái */
-  margin-right: 10px; /* Giảm khoảng cách ở bên phải */
+  margin-left: 10px; 
+  margin-right: 10px;
 }
 .movie_info {
+ 
   width: 100%;
   box-shadow: 0 0 5px grey;
   background-color: #fff;
+  max-width: 100%; 
+  margin: 0 auto;
+  
+  padding-top: 50px; /* Điều chỉnh giá trị padding cho phù hợp */
+ 
   .btn_datve {
     color: #fff;
     width: 100%;
     height: 70px;
     font-size: 25px;
 
-    margin-top: 182px;
+    margin-top: 150px;
     background-color: #fb4226;
     transition: 0.9;
+   
   }
   .btn_datve:hover {
     background-color: #631307;
   }
+}
+.text_info{
+  align-self: center; // Căn giữa theo chiều dọc
+}
+.grid .text-right {
+  white-space: nowrap;
+ 
+ 
+}
+
+.grid h3 {
+  margin: 0; 
+}
+.text_content {
+  text-align: left;
+}
+.grid .text-right {
+  white-space: nowrap;
+  
+}
+
+.movie_info h3 {
+  font-size: 14px;
+}
+.ghe-container {
+ 
+  display: flex;
+  flex-wrap: wrap; 
+}
+
+
+
+@media (max-width: 768px) {
+  .movie_info h3 {
+    font-size: 16px;
+ padding-top: 10px;
+ padding-bottom: 10px;
+  }
+  .ghe-container {
+    align-items: center;
+    flex-direction: row;
+  }
+  .right-content {
+    flex-direction: row;
+    flex-wrap: wrap;
+  }
+  .movie_info {
+    padding-top: 20px; 
+   
+   justify-content: flex-start;
+  }
+  .flex {
+    margin: 0;
+  }
+  .movie_info h3 {
+
+    padding-left: 20px;
+  }
+  
+}
+
+@media (max-width: 1200px) {
+  .movie_info h3 {
+    font-size: 14px;
+  }
+  .movie_info {
+    max-width: 100%;
+  }
+}
+@media (max-width: 480px) {
+  .btn_datve {
+    font-size: 14px;
+    margin-top: 5px;
+  }
+  .movie_info{
+    margin: 0;
+  }
+}
+@media (max-width: 900px) {
+  .grid .text-right {
+    overflow: hidden;
+  }
+  .text_info {
+    align-self: unset; // Xóa căn giữa theo chiều dọc khi màn hình nhỏ hơn 900px
+  }
+  .movie_info{
+    margin: 0;
+  }
+  
 }
