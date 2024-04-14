@@ -53,7 +53,7 @@ const ListMovie = () => {
     slidesToScroll: 3,
   };
   return (
-    <div id="lichChieu" className="slider-container mb-20">
+    <div id="lichChieu" className="slider-container  mb-20">
       <Slider {...settings}>
         {arrMovie.map((movie, index) => {
           return (
@@ -62,56 +62,60 @@ const ListMovie = () => {
               className="movie_item group relative "
               key={index}
             >
-              <div className="m-5 ">
-                <div>
-                  <img
-                    className="group-hover:opacity-50 transition-opacity duration-300 w-full h-96"
-                    src={movie.hinhAnh}
-                    alt=""
-                  />
-                  <div className="absolute inset-0 flex items-center justify-center">
-                    <button
-                      className="bg-transparent rounded-none cursor-pointer p-0"
-                      onClick={() => handleOpen(movie.maPhim)}
-                    >
-                      <div>
-                        <i
-                          className="opacity-0 rounded-full bg-white hover:bg-slate-400 group-hover:opacity-100 transition-opacity duration-300 fa-regular fa-circle-play font-extrabold"
-                          style={{
-                            width: "50px",
-                            height: "50px",
-                            fontSize: "50px",
-                            display: "inline-block",
-                          }}
-                        ></i>
-                      </div>
-                    </button>
-                  </div>
-                </div>
-                <br />
-                <div className="group-hover:opacity-0">
-                  <h3 className=" h-14">
-                    <span className="bg-orange-500 text-white rounded px-2 mr-3 text-lg font-semibold">
-                      C18
-                    </span>
-                    <span className=" text-lg font-semibold ">
-                      {movie.tenPhim}
-                    </span>
-                  </h3>
-
+              <div>
+                <div className=" m-5 relative ">
                   <div>
-                    <p className="line-clamp-3">{movie.moTa}</p>
+                    <img
+                      className="group-hover:opacity-50 transition-opacity duration-300 w-full h-96"
+                      src={movie.hinhAnh}
+                      alt=""
+                    />
+
+                    <div className="absolute inset-0 flex items-center justify-center">
+                      <button
+                        className="bg-transparent rounded-none cursor-pointer p-0"
+                        onClick={() => handleOpen(movie.maPhim)}
+                      >
+                        <div>
+                          <i
+                            className="opacity-0 rounded-full bg-white hover:bg-slate-400 group-hover:opacity-100 transition-opacity duration-300 fa-regular fa-circle-play font-extrabold"
+                            style={{
+                              marginBottom: "100px",
+                              width: "50px",
+                              height: "50px",
+                              fontSize: "50px",
+                              display: "inline-block",
+                            }}
+                          ></i>
+                        </div>
+                      </button>
+                    </div>
                   </div>
-                </div>
-                <div className="">
-                  <NavLink to={`/detail/${movie.maPhim}`}>
-                    <button
-                      style={{ margin: "24px 0px", width: "88%" }}
-                      className="absolute bottom-20 opacity-0 group-hover:opacity-100 transition-opacity duration-300 w-full px-10 py-5 bg-red-700 hover:bg-red-900 rounded text-white text-lg font-semibold "
-                    >
-                      Mua Vé
-                    </button>
-                  </NavLink>
+                  <br />
+                  <div className="group-hover:opacity-0">
+                    <h3 className=" h-14">
+                      <span className="bg-orange-500 text-white rounded px-2 mr-3 text-lg font-semibold">
+                        C18
+                      </span>
+                      <span className=" text-lg font-semibold ">
+                        {movie.tenPhim}
+                      </span>
+                    </h3>
+
+                    <div>
+                      <p className="line-clamp-3">{movie.moTa}</p>
+                    </div>
+                  </div>
+                  <div className="">
+                    <NavLink to={`/detail/${movie.maPhim}`}>
+                      <button
+                        style={{ width: "100%" }}
+                        className="   absolute bottom-20 opacity-0 group-hover:opacity-100 transition-opacity duration-300  px-10 py-5 bg-red-700 hover:bg-red-900 rounded text-white text-lg font-semibold "
+                      >
+                        Mua Vé
+                      </button>
+                    </NavLink>
+                  </div>
                 </div>
               </div>
             </div>
