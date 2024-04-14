@@ -9,7 +9,9 @@ import {
   handleAllTicket,
   updateGheArr,
 } from "../../redux/slice/ticketSlice";
-export default function Purchase() {
+import Header from "../Header/Header";
+import Footer from "../Footer/Footer";
+export default function Purchase(){
   const { gheArr } = useSelector((state) => state.ticketSlice);
   const { seatMovie } = useSelector((state) => state.ticketSlice);
   // console.log("🚀 ~ Purchase ~ ticketSlice:", seatMovie);
@@ -34,7 +36,10 @@ export default function Purchase() {
   }, [maLichChieu]);
 
   return (
-    <div className="">
+    <div className="purcharse_content">
+      <div>
+        <Header/>
+      </div>
       <div className="grid grid-cols-12 ">
         <div className="col-span-7">
           <ListSeats
@@ -48,6 +53,9 @@ export default function Purchase() {
             <InfoMovie gheArr={gheArr} />
           </div>
         </div>
+      </div>
+      <div className="footer_purchase">
+        <Footer/>
       </div>
     </div>
   );

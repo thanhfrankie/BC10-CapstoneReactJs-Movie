@@ -21,12 +21,12 @@ export default function InfoMovie({ gheArr }) {
   const navigate = useNavigate();
   const dispatch = useDispatch();
   useEffect(() => {
-    dispatch(handleTurnOnLoading());
+    // dispatch(handleTurnOnLoading());
     quanLyMuaVeServ
       .getAllTicKet(maLichChieu)
 
       .then((res) => {
-        dispatch(handleTurnOffLoading());
+        // dispatch(handleTurnOffLoading());
         setListMovie(res.data.content.thongTinPhim);
       })
       .catch((err) => {
@@ -37,6 +37,11 @@ export default function InfoMovie({ gheArr }) {
     return total + ghe.giaVe;
   }, 0);
   const handleDatVe = () => {
+    if (!gheArr || gheArr.length === 0) {
+      notify("Bạn chưa chọn ghế.");
+      return;
+    }
+
     if (!listMovie || Object.keys(listMovie).length === 0) {
       console.log("Dữ liệu phim đang được tải...");
       return;
@@ -73,26 +78,26 @@ export default function InfoMovie({ gheArr }) {
           </p>
         </div>
         <hr />
-        <div className="grid grid-cols-2 my-5 mx-5 text-lg font-medium ">
-          <h3 className=" font-medium text-xl ">Cụm Rap:</h3>
-          <h3 className="text-green-500 truncate text-right">
+        <div className="   flex justify-between my-5 mx-5 text-sm font-medium  ">
+          <h3 className="text_info font-medium text-xl mt-5">Cụm Rap:</h3>
+          <h3 className="text_info text-green-500 truncate ">
             {listMovie.tenCumRap}
           </h3>
         </div>
         <hr />
-        <div className="grid grid-cols-2 my-5 mx-5 text-lg font-medium">
-          <h3 className=" font-medium text-xl ">Địa chỉ:</h3>
-          <h3 className="text-green-500 text-right">{listMovie.diaChi}</h3>
+        <div className="  flex justify-between my-5 mx-5 text-sm font-medium">
+          <h3 className="text_info font-medium text-xl ">Địa chỉ:</h3>
+          <h3 className=" text-green-500 text-right">{listMovie.diaChi}</h3>
         </div>
         <hr />
-        <div className="grid grid-cols-2 my-5 mx-5 text-lg font-medium">
-          <h3 className=" font-medium text-xl ">Rạp:</h3>
-          <h3 className="text-green-500 text-right">{listMovie.tenRap}</h3>
+        <div className="  flex justify-between my-5 mx-5 text-sm font-medium">
+          <h3 className="text_info font-medium text-xl ">Rạp:</h3>
+          <h3 className=" text-green-500 text-right">{listMovie.tenRap}</h3>
         </div>
         <hr />
-        <div className="grid grid-cols-2 my-5 mx-5 text-lg font-medium">
-          <h3 className=" font-medium text-xl  ">Ngày giờ chiếu:</h3>
-          <h3 className="text-green-500 text-right">
+        <div className="  flex justify-between my-5 mx-5 text-sm font-medium">
+          <h3 className="text_info font-medium text-xl  ">Ngày giờ chiếu:</h3>
+          <h3 className=" text-green-500 text-right">
             {listMovie.ngayChieu}-
             <span className="text-red-500 text-right">
               {listMovie.gioChieu}
@@ -100,21 +105,23 @@ export default function InfoMovie({ gheArr }) {
           </h3>
         </div>
         <hr />
-        <div className="grid grid-cols-2 my-5 mx-5 text-lg font-medium">
-          <h3 className=" font-medium text-xl ">Tên Phim:</h3>
-          <h3 className="text-green-500 text-right">{listMovie.tenPhim}</h3>
+        <div className="  flex justify-between my-5 mx-5 text-sm font-medium">
+          <h3 className="text_info font-medium text-xl ">Tên Phim:</h3>
+          <h3 className="  text-green-500 text-right">{listMovie.tenPhim}</h3>
         </div>
         <hr />
-        <div className="grid grid-cols-2 my-5 mx-5 text-lg font-medium">
+        <div className="  flex justify-between my-5 mx-5 text-sm font-medium">
           <h3 className="font-medium text-xl">Các ghế đã đặt:</h3>
-          <div className="text-green-500 text-right">
+          <div className=" ghe-container text-green-500 text-right">
             {gheArr.map((ghe, index) => (
-              <span key={ghe.maGhe}>Ghế {ghe.tenGhe}, </span>
+              <span className="text-center" key={ghe.maGhe}>
+                Ghế {ghe.tenGhe},{" "}
+              </span>
             ))}
           </div>
         </div>
         <hr />
-        <div className="text-center mt-5">
+        <div className="  text-center mt-5">
           {userLocal ? (
             <button onClick={handleDatVe} className="btn_datve">
               Đặt Vé
