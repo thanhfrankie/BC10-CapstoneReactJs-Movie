@@ -1,35 +1,21 @@
 name: Capstone ReactJS
-
 on:
-  push:
-    branches:
-      - main
+  workflow_dispatch:
 
 jobs:
-  deploy:
+  build:
+    name: Push to Release Branch
     runs-on: ubuntu-latest
     steps:
-      - name: Checkout repository
-        uses: actions/checkout@v2.5.0
+      - name: Checkout
+        uses: actions/checkout@v4
 
-      - name: Set up Node.js
-        uses: actions/setup-node@v2.5.0
+      # Workflow dispatch event that pushes the current version to the release branch.
+      # From here the secondary production deployment workflow will trigger to build the dependencies.
+      - name: Deploy 🚀
+        uses: JamesIves/github-pages-deploy-action@v4
         with:
-          node-version: 20
-
-      # Thêm bước debug để kiểm tra phiên bản Node.js
-      - name: Check Node.js Version
-        run: node -v
-
-      - name: Install dependencies
-        run: npm install
-
-      - name: Build
-        run: npm run build
-
-      - name: Deploy to server
-        run: |
-          ssh user@your-server 'cd /path/to/deploy && git pull origin main'
-
-      - name: Clean up
-        run: npm prune
+          branch: releases/v4
+          folder: .
+          clean: false
+          single-commit: true
