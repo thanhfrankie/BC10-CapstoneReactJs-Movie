@@ -1,32 +1,33 @@
-name: Deploy to GitHub Pages
+name: Capstone ReactJS
 
 on:
   push:
     branches:
-      - main  # Thay đổi tên branch nếu cần thiết
+      - main
 
 jobs:
   deploy:
     runs-on: ubuntu-latest
 
     steps:
-      - name: Checkout repository
-        uses: actions/checkout@v2
+    - name: Checkout repository
+      uses: actions/checkout@v2
 
-      - name: Set up Node.js
-        uses: actions/setup-node@v2
-        with:
-          node-version: '14'
+    - name: Set up Node.js
+      uses: actions/setup-node@v3
+      with:
+        node-version: 14
 
-      - name: Install dependencies
-        run: npm install  # Thay lệnh này nếu bạn sử dụng gì khác như Yarn
+    - name: Install dependencies
+      run: npm install
 
-      - name: Build
-        run: npm run build  # Thay lệnh này nếu bạn sử dụng công cụ build khác
+    - name: Build
+      run: npm run build  # Replace with your project's build command
 
-      - name: Deploy to GitHub Pages
-        uses: JamesIves/github-pages-deploy-action@4.1.4
-        with:
-          ACCESS_TOKEN: ${{ secrets.GITHUB_TOKEN }}
-          BRANCH: gh-pages
-          FOLDER: build  # Thay đường dẫn này nếu thư mục build của bạn khác
+    - name: Deploy to server
+      run: |
+        # Perform deployment steps, e.g., copy files, SSH into the server, etc.
+        ssh user@your-server 'cd /path/to/deploy && git pull origin main'
+
+    - name: Clean up
+      run: npm prune
