@@ -87,8 +87,8 @@ const SignUp = () => {
           <SignInMobile />
         </div>
       
-          <div className="form_signUp  w-1/3 h-4/5  flex items-center justify-center flex-col absolute left-1/2 top-1/2 transform -translate-x-1/2 -translate-y-1/2 p-10 border  rounded-md space-y-5 z-10 bg-white bg-opacity-80 ">
-            <h1 className="flex items-center justify-center text-black text-xl font-semibold	">
+          <div className="form_signUp  w-1/3 h-auto flex items-center justify-center flex-col absolute left-1/2 top-1/2 transform -translate-x-1/2 -translate-y-1/2 p-10 border  rounded-md space-y-5 z-10 bg-white bg-opacity-80 ">
+            <h1 className="flex items-center mt-4 justify-center text-black text-xl font-semibold	">
               Đăng ký thành viên
             </h1>
             <form onSubmit={handleSubmit} className="formInput space-y-6">
@@ -174,7 +174,7 @@ const SignUp = () => {
                   Đăng ký
                 </button>
               </div>
-              <p className={`text-end`}>
+              <p className={`text-end mb-5`}>
                 Đã có tài khoản?
                 <NavLink to="/sign-in" className="mx-1 text-blue-500 ">
                   Đăng nhập
@@ -183,8 +183,6 @@ const SignUp = () => {
               </p>
             </form>
           </div>
-      
-        
       </div>
     </div>
   );

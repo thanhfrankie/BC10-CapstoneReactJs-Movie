@@ -6,7 +6,7 @@ import { useDispatch, useSelector } from "react-redux";
 import { getAllMovieThunk, handleAllMovie } from "../../redux/slice/phimSlice";
 import Slider from "react-slick";
 import { NavLink } from "react-router-dom";
-import "./listMovie.scss";
+import "./ListMovie.scss";
 
 const ListMovie = () => {
   // const [arrMovie, setArrMovie] = useState([]);
