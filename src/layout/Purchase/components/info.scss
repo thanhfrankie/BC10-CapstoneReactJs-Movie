@@ -10,7 +10,7 @@ hr {
   max-width: 100%; 
   margin: 0 auto;
   
-  padding-top: 50px; /* Điều chỉnh giá trị padding cho phù hợp */
+  padding-top: 50px;
  
   .btn_datve {
     color: #fff;
@@ -28,7 +28,7 @@ hr {
   }
 }
 .text_info{
-  align-self: center; // Căn giữa theo chiều dọc
+  align-self: center; 
 }
 .grid .text-right {
   white-space: nowrap;
@@ -109,7 +109,7 @@ hr {
     overflow: hidden;
   }
   .text_info {
-    align-self: unset; // Xóa căn giữa theo chiều dọc khi màn hình nhỏ hơn 900px
+    align-self: unset; 
   }
   .movie_info{
     margin: 0;

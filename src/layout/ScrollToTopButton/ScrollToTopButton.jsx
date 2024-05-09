@@ -34,7 +34,7 @@ const ScrollToTopButton = () => {
     <div>
       {isVisible && (
         <button className="scroll-to-top-btn" onClick={scrollToTop}>
-          <i class="fa-duotone fa-up-to-line"></i>
+          <i className="fa-duotone fa-up-to-line"></i>
         </button>
       )}
     </div>

@@ -15,13 +15,13 @@ import {
 export default function InfoMovie({ gheArr }) {
   const notify = useContext(NotifyContext);
   const [listMovie, setListMovie] = useState([]);
-  const { maLichChieu } = useParams(); // Get maLichChieu from URL
+  const { maLichChieu } = useParams();
   const userLocal = getLocalStorage("user");
   const [infoUser, setInfoUser] = useState(null);
   const navigate = useNavigate();
   const dispatch = useDispatch();
   useEffect(() => {
-    // dispatch(handleTurnOnLoading());
+    
     quanLyMuaVeServ
       .getAllTicKet(maLichChieu)
 

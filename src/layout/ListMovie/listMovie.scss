@@ -47,14 +47,14 @@
 
   .movie_content {
     position: relative;
-    overflow: hidden; /* Đảm bảo nội dung không tràn ra ngoài khi chuyển đổi kích thước */
+    overflow: hidden;
 
     &:hover {
       width: 100%;
       height: 100%;
       top: 0;
       left: 0;
-      z-index: 1; /* Đảm bảo nó chồng lên phía trên */
+      z-index: 1; 
       transition: all 0.3s;
     }
   }
@@ -72,7 +72,7 @@
     top: 397px;
     right: auto;
     cursor: pointer;
-    transition: opacity 0.5; /* Thêm hiệu ứng transition */
+    transition: opacity 0.5; 
     z-index: 3;
     white-space: nowrap;
   }

@@ -14,23 +14,15 @@ import Footer from "../Footer/Footer";
 export default function Purchase(){
   const { gheArr } = useSelector((state) => state.ticketSlice);
   const { seatMovie } = useSelector((state) => state.ticketSlice);
-  // console.log("🚀 ~ Purchase ~ ticketSlice:", seatMovie);
+
   const dispatch = useDispatch();
-  const { maLichChieu } = useParams(); // Get maLichChieu from URL
+  const { maLichChieu } = useParams(); 
   const danhSachGheDangDat = (seat) => {
     dispatch(updateGheArr(seat));
   };
 
   useEffect(() => {
-    // quanLyMuaVeServ
-    //   .getAllTicKet(maLichChieu)
-    //   .then((res) => {
-    //     // setSeatMovie(res.data.content.danhSachGhe);
-    //     dispatch(handleAllTicket(res.data.content.danhSachGhe));
-    //   })
-    //   .catch((err) => {
-    //     console.log(err);
-    //   });
+    
 
     dispatch(getAllTicketThunk(maLichChieu));
   }, [maLichChieu]);

@@ -53,14 +53,14 @@
 .seats-container {
   display: flex;
   flex-wrap: wrap;
-  justify-content: center; /* Căn giữa các phần tử con */
+  justify-content: center;
 }
 
 .seat-wrapper {
-  display: flex; /* Cho phép các ghế trong hàng căn giữa */
-  justify-content: center; /* Căn giữa các ghế trong hàng */
+  display: flex; 
+  justify-content: center; 
   flex: 0 0 calc(100% / 16);
-  margin-bottom: 5px; /* Có thể điều chỉnh khoảng cách giữa các ghế ở đây */
+  margin-bottom: 5px; 
 }
 .button_item {
   pointer-events: none;
@@ -99,14 +99,14 @@
   }
   .seat-wrapper {
     flex: 0 0 calc(100% / 16);
-    /* Điều chỉnh số lượng ghế trong mỗi hàng */
+    
   }
 }
 
-/* Thiết lập cho màn hình từ 1200px trở lên */
+
 @media (min-width: 1200px) {
   .seats-container {
-    /* Các style khác ở đây */
+   
     justify-content: center;
     width: 100%;
   }
@@ -116,6 +116,6 @@
     grid-template-columns: repeat(
       auto-fill,
       minmax(35px, 1fr)
-    ); /* Mỗi cột có độ rộng tối thiểu 35px */
+    );
   }
 }
